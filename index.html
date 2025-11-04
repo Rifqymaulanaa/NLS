@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Leader Summit 2026 | Festival Lomba SD & SMP Al-Bunyan</title>
+    
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#00B0FF',
+                        'secondary': '#00E676',
+                        'accent': '#E0FFE9',
+                        'background': '#F5FFF9',
+                        'text_primary': '#08211C',
+                        'text_secondary': '#50645F',
+                        'gradient-start': '#00B0FF',
+                        'gradient-end': '#00E676',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    keyframes: {
+                        floating: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        fadeInUp: {
+                           '0%': { opacity: 0, transform: 'translateY(30px) scale(0.98)' },
+                           '100%': { opacity: 1, transform: 'translateY(0px) scale(1)' },
+                        },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }, 
+                        }
+                    },
+                    animation: {
+                        floating: 'floating 6s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'marquee-scroll': 'scroll 40s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Poppins', 'sans-serif';
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #00B0FF, #00E676);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #00B0FF, #00E676);
+        }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #00E676; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00B0FF; }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .reveal-section { opacity: 0; transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .section-fade-up { transform: translateY(40px); }
+        .section-visible { opacity: 1; transform: translateY(0); }
+
+        /* === 1. CSS ANIMASI NAVBAR SELULER (BARU) === */
+        #mobile-menu {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            /* Transisi yang lebih smooth (cubic-bezier) untuk slide */
+            transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease-in-out;
+        }
+        #mobile-menu.is-open {
+            max-height: 500px; /* Nilai besar agar cukup untuk konten */
+            opacity: 1;
+        }
+
+        /* === 2. CSS MARQUEE SPONSOR (BARU) === */
+        .marquee-fade-container {
+            position: relative;
+        }
+        /* Gradient memudar di kiri dan kanan */
+        .marquee-fade-container::before,
+        .marquee-fade-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 75px; /* Lebar gradasi */
+            z-index: 10;
+        }
+        .marquee-fade-container::before {
+            left: 0;
+            background: linear-gradient(to right, #F5FFF9, transparent);
+        }
+        .marquee-fade-container::after {
+            right: 0;
+            background: linear-gradient(to left, #F5FFF9, transparent);
+        }
+        /* Versi Dark Mode */
+        .dark .marquee-fade-container::before {
+            background: linear-gradient(to right, #111827, transparent); /* bg-gray-900 */
+        }
+        .dark .marquee-fade-container::after {
+            background: linear-gradient(to left, #111827, transparent); /* bg-gray-900 */
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+        }
+        .marquee-wrapper {
+            display: flex;
+            width: 200%; /* Konten + Duplikat */
+            animation: marquee-scroll 40s linear infinite;
+            will-change: transform;
+        }
+        .marquee-container:hover .marquee-wrapper {
+            animation-play-state: paused;
+        }
+        .marquee-content {
+            display: flex;
+            flex-shrink: 0;
+            width: 50%; /* 1 set logo */
+            align-items: center;
+        }
+        .marquee-item {
+            flex-shrink: 0;
+            padding: 0 1.5rem; /* Spasi antar logo (lebih rapat) */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .marquee-item img {
+            filter: grayscale(1);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+        .marquee-item:hover img {
+            filter: grayscale(0);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        /* === 3. CSS SLIDER POSTER (BARU) === */
+        .poster-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory; /* Kunci scroll-snap */
+            gap: 1.5rem; /* 24px */
+            /* Padding untuk "peek-a-boo" di mobile */
+            padding: 0.5rem 1.5rem; 
+        }
+        /* Sembunyikan scrollbar */
+        .poster-slider::-webkit-scrollbar { display: none; }
+        .poster-slider { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .poster-card {
+            flex-shrink: 0;
+            width: 80%; /* 1.x kartu di mobile */
+            scroll-snap-align: start; /* Posisi snap */
+            transition: all 0.3s ease;
+        }
+        .poster-card:hover {
+            transform: translateY(-5px);
+        }
+        /* Tampilan 2 kartu di tablet */
+        @media (min-width: 768px) { 
+            .poster-card { width: 45%; }
+            .poster-slider { padding: 0.5rem; } /* Hapus padding "peek" di tablet */
+        }
+        /* Tampilan 3 kartu di laptop */
+        @media (min-width: 1024px) { 
+            .poster-card { width: calc(33.333% - 1rem); }
+        }
+
+        /* === 4. CSS TOMBOL GUIDEBOOK (BARU) === */
+        .btn-ghost-gradient {
+            background-color: transparent;
+            border: 2px solid #00B0FF; /* Warna primer */
+            color: #00B0FF; /* Warna primer */
+            font-weight: 700;
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 0.5rem 1rem; /* py-2 px-4 */
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .btn-ghost-gradient:hover {
+            background: linear-gradient(135deg, #00B0FF, #00E676);
+            color: white;
+            border-color: transparent;
+        }
+        /* Versi Dark Mode */
+        .dark .btn-ghost-gradient {
+            color: #00E676; /* Warna sekunder */
+            border-color: #00E676;
+        }
+        .dark .btn-ghost-gradient:hover {
+            color: #08211C; /* text-text_primary */
+        }
+
+
+        /* === 5. CSS TIMELINE VERTIKAL (DARI SEBELUMNYA) === */
+        .timeline-container { position: relative; max-width: 900px; margin: 0 auto; }
+        .timeline-container::after { content: ''; position: absolute; width: 6px; background-color: #00B0FF; top: 0; bottom: 0; left: 50%; margin-left: -3px; border-radius: 3px; }
+        .timeline-item { padding: 10px 40px; position: relative; width: 50%; }
+        .timeline-item::after { content: ''; position: absolute; width: 28px; height: 28px; right: -14px; background-color: white; border: 6px solid #00B0FF; top: 24px; border-radius: 50%; z-index: 1; }
+        .timeline-left { left: 0; padding-right: 50px; }
+        .timeline-right { left: 50%; padding-left: 50px; }
+        .timeline-left::after { right: -14px; }
+        .timeline-right::after { left: -14px; }
+        .timeline-content { padding: 24px; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; transition: transform 0.3s ease; }
+        .timeline-content:hover { transform: translateY(-5px); }
+        .timeline-content h3 { font-size: 1.5rem; font-weight: 700; color: #00B0FF; margin-bottom: 8px; }
+        .dark .timeline-container::after { background-color: #00B0FF; }
+        .dark .timeline-item::after { background-color: #1f2937; border-color: #00B0FF; }
+        .dark .timeline-content { background-color: #374151; } 
+        @media (max-width: 768px) {
+            .timeline-container::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item::after { left: 17px; }
+            .timeline-right { left: 0%; padding-left: 70px; }
+            .timeline-right::after { left: 17px; }
+        }
+    </style>
+</head>
+
+<body class="bg-background text-text_primary dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
+
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 top-0 left-0">
+        <nav class="container mx-auto px-4 md:px-6 py-4">
+            <div class="flex justify-between items-center bg-white/50 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl shadow-lg px-6 py-3">
+                <a href="#home" class="flex items-center space-x-2">
+                    <img src="assets/icons/logo.png" alt="Al Bunyan Fest Logo" class="w-10 h-10">
+                    <span class="text-2xl font-bold"><span class="gradient-text">Next Leader Summit</span></span>
+                </a>
+                
+                <ul class="hidden lg:flex items-center space-x-8 font-medium">
+                    <li><a href="#home" class="hover:text-primary transition-colors">Beranda</a></li>
+                    <li><a href="#kategori" class="hover:text-primary transition-colors">Kategori</a></li>
+                    <li><a href="#unggulan" class="hover:text-primary transition-colors">Kompetisi</a></li>
+                    <li><a href="#timeline" class="hover:text-primary transition-colors">Timeline</a></li>
+                    <li><a href="#faq" class="hover:text-primary transition-colors">FAQ</a></li>
+                </ul>
+                
+                <div class="hidden lg:flex items-center space-x-3">
+                    <button id="dark-toggle-desktop" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-accent dark:hover:bg-gray-700">
+                        <i class="fas fa-moon text-lg"></i>
+                    </button>
+                    <button class="gradient-bg text-white px-5 py-2 rounded-xl font-medium shadow-lg hover:shadow-primary/40 transition-all duration-300">Daftar</button>
+                </div>
+                
+                <div class="lg:hidden flex items-center space-x-2">
+                    <button id="dark-toggle-mobile" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-accent dark:hover:bg-gray-700">
+                        <i class="fas fa-moon text-lg"></i>
+                    </button>
+                    <button id="menu-toggle" class="text-2xl w-10 h-10">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="mobile-menu" class="lg:hidden mt-2 bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+                <ul class="flex flex-col space-y-2 p-4 font-medium">
+                    <li><a href="#home" class="block py-2 px-4 rounded-lg hover:bg-accent dark:hover:bg-gray-700">Beranda</a></li>
+                    <li><a href="#kategori" class="block py-2 px-4 rounded-lg hover:bg-accent dark:hover:bg-gray-700">Kategori</a></li>
+                    <li><a href="#unggulan" class="block py-2 px-4 rounded-lg hover:bg-accent dark:hover:bg-gray-700">Kompetisi</a></li>
+                    <li><a href="#timeline" class="block py-2 px-4 rounded-lg hover:bg-accent dark:hover:bg-gray-700">Timeline</a></li>
+                    <li><a href="#faq" class="block py-2 px-4 rounded-lg hover:bg-accent dark:hover:bg-gray-700">FAQ</a></li>
+                </ul>
+                <div class="border-t border-gray-200 dark:border-gray-700 p-4 space-y-3">
+                    <button class="w-full gradient-bg text-white px-5 py-2 rounded-xl font-medium shadow-lg">Daftar</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        
+        <section id="home" class="pt-32 pb-20 lg:pt-40 lg:pb-28 relative overflow-hidden reveal-section">
+            <div class="absolute top-0 left-0 w-full h-full opacity-5 dark:opacity-10">
+                <div class="absolute top-1/4 left-1/4 w-72 h-72 rounded-full gradient-bg floating"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full gradient-bg floating" style="animation-delay: 2s;"></div>
+            </div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0 text-center lg:text-left">
+                        <span class="inline-block bg-accent dark:bg-gray-700 text-secondary dark:text-primary font-medium px-4 py-1 rounded-full text-sm mb-4">SEKOLAH AL BUNYAN PROUDLY PRESENTS</span>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                            Selamat Datang di <span class="gradient-text">Next Leader Summit</span> 2025
+                        </h1>
+                        <p class="text-lg md:text-xl text-text_secondary dark:text-gray-400 mb-10 max-w-2xl mx-auto lg:mx-0">
+                            Festival lomba Siswa SD & SMP persembahan Sekolah Al Bunyan. Tunjukkan bakat, raih prestasi, dan jadilah juara sejati!
+                        </p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
+                            <button class="gradient-bg text-white px-8 py-4 rounded-2xl font-medium shadow-lg hover:shadow-primary/40 transition-all duration-300 flex items-center justify-center gap-2">
+                                <span>Daftar Lomba</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <a href="#timeline" class="bg-white dark:bg-gray-700 border-2 border-gradient-start text-gradient-start px-8 py-4 rounded-2xl font-medium hover:bg-accent dark:hover:bg-gray-600 transition-all duration-300 flex items-center justify-center gap-2">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Lihat Timeline</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex justify-center">
+                        <div class="relative">
+                            <div class="w-80 h-80 lg:w-96 lg:h-96 gradient-bg rounded-full flex items-center justify-center floating">
+                                <div class="w-64 h-64 lg:w-80 lg:h-80 bg-background dark:bg-gray-800 rounded-full flex items-center justify-center shadow-2xl">
+                                    <div class="text-center p-8">
+                                        <img src="assets/icons/favicon.png" alt="AB-Fest Logo">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute -top-4 -right-4 glass-effect dark:bg-gray-700/30 rounded-2xl p-4 w-44 shadow-lg">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-gradient-start rounded-full flex items-center justify-center text-white mr-3">
+                                        <i class="fas fa-layer-group"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold">5 Kategori</p>
+                                        <p class="text-xs text-text_secondary dark:text-gray-400">Lomba</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute -bottom-4 -left-4 glass-effect dark:bg-gray-700/30 rounded-2xl p-4 w-44 shadow-lg">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-gradient-end rounded-full flex items-center justify-center text-white mr-3">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold">14+ Lomba</p>
+                                        <p class="text-xs text-text_secondary dark:text-gray-400">Tersedia</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="partners" class="py-16 reveal-section">
+            <div class="container mx-auto px-4 md:px-6">
+                <h3 class="text-center text-xl font-medium text-text_secondary dark:text-gray-400 mb-8">
+                    Didukung Oleh
+                </h3>
+                
+                <div class="marquee-fade-container">
+                    <div class="marquee-container">
+                        <div class="marquee-wrapper">
+                            <div class="marquee-content">
+                                <div class="marquee-item"><img src="assets/sponsor/1.png" alt="Sponsor 1" class="h-12 lg:h-16"></div>
+                                <div class="marquee-item"><img src="assets/sponsor/2.png" alt="Sponsor 2" class="h-12 lg:h-16"></div>
+                                <div class="marquee-item"><img src="assets/sponsor/3.png" alt="Sponsor 3" class="h-12 lg:h-16"></div>
+                                <div class="marquee-item"><img src="assets/sponsor/4.png" alt="Sponsor 4" class="h-12 lg:h-16"></div>
+                                <div class="marquee-item"><img src="assets/sponsor/5.png" alt="Sponsor 5" class="h-12 lg:h-16"></div>
+                                <div class="marquee-item"><img src="assets/sponsor/6.png" alt="Sponsor 6" class="h-12 lg:h-16"></div>
+                            </div>
+                            <div class="marquee-content" aria-hidden="true">
+                                <div class="marquee-item"><img src="assets/sponsor/1.png" alt="Sponsor 1" class="h-12 lg:h-16"></div>
+                                <div class="marquee-item"><img src="assets/sponsor/2.png" alt="Sponsor 2" class="h-12 lg:h-16"></div>
+                                <div class="marquee-item"><img src="assets/sponsor/3.png" alt="Sponsor 3" class="h-12 lg:h-16"></div>
+                                <div class="marquee-item"><img src="assets/sponsor/4.png" alt="Sponsor 4" class="h-12 lg:h-16"></div>
+                                <div class="marquee-item"><img src="assets/sponsor/5.png" alt="Sponsor 5" class="h-12 lg:h-16"></div>
+                                <div class="marquee-item"><img src="assets/sponsor/6.png" alt="Sponsor 6" class="h-12 lg:h-16"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="kategori" class="py-16 bg-white dark:bg-gray-800 reveal-section section-fade-up">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Jelajahi 5 <span class="gradient-text">Kategori Utama</span></h2>
+                    <p class="text-lg text-text_secondary dark:text-gray-400">Temukan kompetisi yang paling sesuai dengan minat dan bakatmu.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-300 group">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Olahraga</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Futsal & Catur</p>
+                    </div>
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-secondary/20 hover:-translate-y-2 transition-all duration-300 group">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Sains</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Olimpiade, LCC & Debat</p>
+                    </div>
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-300 group">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Seni</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Poster, Art Spark & Videografi</p>
+                    </div>
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-secondary/20 hover:-translate-y-2 transition-all duration-300 group">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
+                            <i class="fas fa-quran"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Keislaman</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Da'i Cilik, MHQ & MTQ</p>
+                    </div>
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-300 group">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Kontes</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Story Telling, Pidato & Menyanyi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="timeline" class="py-20 container mx-auto px-4 md:px-6 reveal-section section-fade-up">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Timeline Acara</span></h2>
+                <p class="text-lg text-text_secondary dark:text-gray-400">Catat tanggalnya! Jangan sampai ketinggalan rangkaian acara seru kami.</p>
+            </div>
+            
+            <div class="timeline-container">
+                <div class="timeline-item timeline-left">
+                    <div class="timeline-content">
+                        <h3>Hari 1</h3>
+                        <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside">
+                            <li>Pembukaan</li>
+                            <li>Futsal (Penyisihan)</li>
+                            <li>LCC Umum (Penyisihan)</li>
+                            <li>Art Spark</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-right">
+                    <div class="timeline-content">
+                        <h3>Hari 2</h3>
+                        <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside">
+                            <li>Futsal (Penyisihan)</li>
+                            <li>Olimpiade MTK</li>
+                            <li>MTQ</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-left">
+                    <div class="timeline-content">
+                        <h3>Hari 3</h3>
+                        <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside">
+                            <li>Futsal (Final)</li>
+                            <li>Catur (Penyisihan)</li>
+                            <li>Olimpiade Sains</li>
+                            <li>MHQ</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-right">
+                    <div class="timeline-content">
+                        <h3>Hari 4</h3>
+                        <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside">
+                            <li>Catur (Final)</li>
+                            <li>Debat Umum</li>
+                            <li>Story Telling</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-left">
+                    <div class="timeline-content">
+                        <h3>Penutupan</h3>
+                        <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside">
+                            <li>Final LCC Umum</li>
+                            <li>Pidato 3 Bahasa</li>
+                            <li>Menyanyi</li>
+                            <li>Da'i Cilik</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section id="unggulan" class="py-16 bg-white dark:bg-gray-800 reveal-section section-fade-up">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Kompetisi Unggulan</span></h2>
+                    <p class="text-lg text-text_secondary dark:text-gray-400">Jangan lewatkan kompetisi paling bergengsi di Al Bunyan Fest!</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden group transition-all duration-300 hover:shadow-primary/30">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1521405617886-addc6e32F040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Futsal" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Olahraga</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Futsal (SD & SMP)</h3>
+                            <p class="text-text_secondary dark:text-gray-400 text-sm mb-4">Adu skill dan strategi tim-mu di lapangan. Terbuka untuk tim SD & SMP (Lk).</p>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-text_primary dark:text-gray-200 font-medium"><i class="fas fa-users mr-1"></i> Tim</span>
+                                <a href="#" class="font-bold text-primary group-hover:underline">Lihat Detail <i class="fas fa-arrow-right text-xs"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden group transition-all duration-300 hover:shadow-secondary/30">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba LCC" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-4 left-4 bg-secondary text-text_primary px-3 py-1 rounded-full text-sm font-medium">Sains</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">LCC Umum (SD & SMP)</h3>
+                            <p class="text-text_secondary dark:text-gray-400 text-sm mb-4">Lomba Cepat Tepat menguji wawasan umum, sains, dan pengetahuan agama.</p>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-text_primary dark:text-gray-200 font-medium"><i class="fas fa-user-friends mr-1"></i> Tim (Pr/Lk)</span>
+                                <a href="#" class="font-bold text-primary group-hover:underline">Lihat Detail <i class="fas fa-arrow-right text-xs"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden group transition-all duration-300 hover:shadow-primary/30">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Seni</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Videografi (Online)</h3>
+                            <p class="text-text_secondary dark:text-gray-400 text-sm mb-4">Buat video promosi kreatif tentang Sekolah Al Bunyan. Terbuka untuk SMP (Online).</p>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-text_primary dark:text-gray-200 font-medium"><i class="fas fa-video mr-1"></i> SMP (Online)</span>
+                                <a href="#" class="font-bold text-primary group-hover:underline">Lihat Detail <i class="fas fa-arrow-right text-xs"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="statistik" class="py-20 gradient-bg text-white reveal-section">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div>
+                        <i class="fas fa-users text-5xl mb-4 opacity-80"></i>
+                        <h3 id="stat-peserta" data-target="1500" class="text-5xl font-bold mb-2">0</h3>
+                        <p class="text-xl font-medium opacity-90">Total Peserta</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-trophy text-5xl mb-4 opacity-80"></i>
+                        <h3 id="stat-lomba" data-target="14" class="text-5xl font-bold mb-2">0</h3>
+                        <p class="text-xl font-medium opacity-90">Total Kompetisi</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-school text-5xl mb-4 opacity-80"></i>
+                        <h3 id="stat-sekolah" data-target="50" class="text-5xl font-bold mb-2">0</h3>
+                        <p class="text-xl font-medium opacity-90">Sekolah Berpartisipasi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="hadiah" class="py-20 bg-white dark:bg-gray-800 reveal-section section-fade-up">
+            <div class="container mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-12 items-center">
+                <div class="flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1593011030182-702341b83b37?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                         alt="Piala dan Medali" 
+                         class="rounded-3xl shadow-2xl w-full max-w-md lg:max-w-none">
+                </div>
+                
+                <div class="max-w-xl">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Raih <span class="gradient-text">Hadiah & Penghargaan</span></h2>
+                    <p class="text-lg text-text_secondary dark:text-gray-400 mb-8">
+                        Bukan hanya pengalaman, bawa pulang piala, medali, sertifikat, dan uang pembinaan jutaan rupiah!
+                    </p>
+                    <ul class="space-y-6">
+                        <li class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-accent dark:bg-gray-700 text-primary dark:text-secondary text-xl rounded-full flex-shrink-0 flex items-center justify-center">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Piala Bergilir & Tetap</h3>
+                                <p class="text-text_secondary dark:text-gray-400">Piala eksklusif untuk Juara 1, 2, 3 dan Juara Umum.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-accent dark:bg-gray-700 text-primary dark:text-secondary text-xl rounded-full flex-shrink-0 flex items-center justify-center">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Uang Pembinaan</h3>
+                                <p class="text-text_secondary dark:text-gray-400">Total uang pembinaan jutaan rupiah untuk para pemenang.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-accent dark:bg-gray-700 text-primary dark:text-secondary text-xl rounded-full flex-shrink-0 flex items-center justify-center">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Sertifikat Resmi</h3>
+                                <p class="text-text_secondary dark:text-gray-400">Semua peserta dan pemenang akan mendapatkan e-sertifikat resmi.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="daftar-lomba" class="py-16 container mx-auto px-0 md:px-6 reveal-section section-fade-up">
+            <div class="text-center max-w-2xl mx-auto mb-12 px-4">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Daftar Lengkap <span class="gradient-text">Kompetisi</span></h2>
+                <p class="text-lg text-text_secondary dark:text-gray-400">Inilah semua 14 kompetisi seru yang bisa kamu ikuti!</p>
+            </div>
+            
+            <div class="max-w-7xl mx-auto space-y-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 border-b-2 border-primary pb-2 px-4 md:px-0">Olahraga</h3>
+                    <div class="poster-slider">
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/futsal.jpg" alt="Poster Lomba Futsal" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Anwar</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">Futsal</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/fashion show.jpg" alt="Poster Lomba Catur" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Anwar</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">Catur</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 border-b-2 border-primary pb-2 px-4 md:px-0">Sains</h3>
+                    <div class="poster-slider">
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/menggambar.jpg" alt="Poster Olimpiade MTK" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Hamid</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">Olimpiade MTK</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk/Pr)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/surat.jpg" alt="Poster Olimpiade Sains" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Hamid</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">Olimpiade Sains</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk/Pr)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/FLC.jpg" alt="Poster LCC Umum" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Hamid</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">LCC Umum</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk/Pr)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/debat.jpg" alt="Poster Debat Bahasa Indonesia" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Hamid</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">Debat B. Indonesia</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Lk/Pr)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 border-b-2 border-primary pb-2 px-4 md:px-0">Seni</h3>
+                    <div class="poster-slider">
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/poster.jpg" alt="Poster Digital Competition" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">Poster Digital (Online)</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Lk/Pr)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/menggambar.jpg" alt="Poster Art Spark" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">Art Spark</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD (Lk/Pr)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/poster.jpg" alt="Poster Videografi" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">Videografi (Online)</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Lk/Pr)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 border-b-2 border-primary pb-2 px-4 md:px-0">Keislaman</h3>
+                    <div class="poster-slider">
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/MHQ.jpg" alt="Poster Da'i Cilik" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Ust. Wira</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">Da'i Cilik</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD (Lk)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/MHQ.jpg" alt="Poster MHQ" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Ust. Wira</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">MHQ (Hafalan)</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/MTQ.jpg" alt="Poster MTQ" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Ust. Wira</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">MTQ (Tilawah)</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 border-b-2 border-primary pb-2 px-4 md:px-0">Kontes</h3>
+                    <div class="poster-slider">
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/story telling.jpg" alt="Poster Story Telling" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">Story Telling</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Lk/Pr)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/debat.jpg" alt="Poster Pidato 3 Bahasa" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">Pidato 3 Bahasa</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Lk/Pr)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                            <div class="relative">
+                                <img src="assets/images/nyanyi.jpg" alt="Poster Lomba Menyanyi" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-xl mb-1">Menyanyi</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk/Pr)</p>
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="testimoni" class="py-20 bg-accent dark:bg-gray-800 reveal-section section-fade-up">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Apa Kata <span class="gradient-text">Alumni Juara?</span></h2>
+                    <p class="text-lg text-text_secondary dark:text-gray-400">Dengarkan pengalaman mereka di Al Bunyan Fest tahun lalu!</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg">
+                        <i class="fas fa-quote-left text-primary text-3xl mb-4"></i>
+                        <p class="text-text_secondary dark:text-gray-400 mb-6 italic">
+                            "Al Bunyan Fest tahun lalu seru banget! Lomba futsalnya kompetitif dan panitianya ramah-ramah. Nggak sabar ikut lagi tahun ini!"
+                        </p>
+                        <div class="flex items-center">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 1" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
+                            <div>
+                                <h4 class="font-bold">Ahmad Rizal</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400">Juara 1 Futsal SMP 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg md:translate-y-6">
+                        <i class="fas fa-quote-left text-primary text-3xl mb-4"></i>
+                        <p class="text-text_secondary dark:text-gray-400 mb-6 italic">
+                            "Aku ikut LCC dan Olimpiade MTK. Soalnya menantang dan nambah banyak pengalaman. Senang banget bisa jadi juara 2 MTK!"
+                        </p>
+                        <div class="flex items-center">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 2" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
+                            <div>
+                                <h4 class="font-bold">Siti Nuraeni</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400">Juara 2 Olimpiade MTK SD 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg">
+                        <i class="fas fa-quote-left text-primary text-3xl mb-4"></i>
+                        <p class="text-text_secondary dark:text-gray-400 mb-6 italic">
+                            "Ikut lomba Da'i Cilik di AB-Fest bikin aku makin percaya diri tampil di depan umum. Panggungnya megah dan jurinya profesional."
+                        </p>
+                        <div class="flex items-center">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 3" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
+                            <div>
+                                <h4 class="font-bold">Budi Santoso</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400">Finalis Da'i Cilik SD 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="artikel" class="py-20 container mx-auto px-4 md:px-6 reveal-section section-fade-up">
+             <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Dapatkan <span class="gradient-text">Tips & Trik</span> Sukses</h2>
+                <p class="text-lg text-text_secondary dark:text-gray-400">Baca artikel dari para ahli dan juara untuk membantumu lebih siap berkompetisi.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <div class="p-6">
+                        <span class="text-sm font-medium text-primary">LCC & Debat</span>
+                        <h3 class="text-xl font-bold my-2 hover:underline">5 Cara Berpikir Cepat dan Kritis Saat Lomba LCC</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Oleh: Tim Juri - 3 Nov 2025</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <div class="p-6">
+                        <span class="text-sm font-medium text-primary">Produktivitas</span>
+                        <h3 class="text-xl font-bold my-2 hover:underline">Manajemen Waktu: Kunci Sukses Juara Lomba Sambil Sekolah</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Oleh: Admin AB-Fest - 1 Nov 2025</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <div class="p-6">
+                        <span class="text-sm font-medium text-primary">Public Speaking</span>
+                        <h3 class="text-xl font-bold my-2 hover:underline">Cara Mengatasi Gugup Saat Lomba Pidato atau Da'i Cilik</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Oleh: Ust. Wira - 30 Okt 2025</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="faq" class="py-20 bg-white dark:bg-gray-800 reveal-section section-fade-up">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Pertanyaan <span class="gradient-text">yang Sering Diajukan</span></h2>
+                    <p class="text-lg text-text_secondary dark:text-gray-400">Masih bingung? Temukan jawabanmu di sini.</p>
+                </div>
+                
+                <div class="max-w-3xl mx-auto space-y-4" id="faq-container">
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl overflow-hidden shadow-sm">
+                        <button class="faq-toggle w-full flex justify-between items-center p-6 font-bold text-lg text-left" data-target="faq-content-1">
+                            <span>Siapa saja yang bisa mendaftar?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-content-1" class="faq-content hidden px-6 pb-6 text-text_secondary dark:text-gray-400">
+                            <p>Lomba ini terbuka untuk siswa/i SD dan SMP (atau sederajat) dari sekolah manapun. Pastikan untuk mendaftar sesuai jenjang yang ditentukan di setiap kategori lomba (misal: Futsal SD, Futsal SMP).</p>
+                        </div>
+                    </div>
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl overflow-hidden shadow-sm">
+                        <button class="faq-toggle w-full flex justify-between items-center p-6 font-bold text-lg text-left" data-target="faq-content-2">
+                            <span>Di mana lokasi lombanya?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-content-2" class="faq-content hidden px-6 pb-6 text-text_secondary dark:text-gray-400">
+                            <p>Semua lomba (kecuali yang ditandai 'Online') akan diadakan secara offline di Kampus Sekolah Al Bunyan. Alamat lengkap bisa Anda lihat di bagian footer website ini. Untuk lomba online, petunjuk teknis akan dikirim melalui email.</p>
+                        </div>
+                    </div>
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl overflow-hidden shadow-sm">
+                        <button class="faq-toggle w-full flex justify-between items-center p-6 font-bold text-lg text-left" data-target="faq-content-3">
+                            <span>Berapa biaya pendaftarannya?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-content-3" class="faq-content hidden px-6 pb-6 text-text_secondary dark:text-gray-400">
+                            <p>Biaya pendaftaran bervariasi untuk setiap lomba. Anda dapat melihat detail biaya pendaftaran, booklet, dan informasi lainnya setelah mengklik tombol "Daftar Lomba" dan memilih lomba yang diminati.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="cta" class="py-20 gradient-bg text-white reveal-section">
+            <div class="container mx-auto px-4 md:px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Siap Jadi Juara di <br class="hidden sm:block"> Al Bunyan Fest 2025?</h2>
+                <p class="text-lg mb-8 max-w-xl mx-auto opacity-90">Jangan tunda lagi. Daftarkan dirimu atau tim sekolahmu dan raih prestasi gemilang!</p>
+                <button class="bg-white text-primary px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-white/40 hover:scale-105 transition-all duration-300">
+                    Daftar Sekarang Juga!
+                </button>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer class="bg-text_primary text-gray-300 py-16">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <a href="#home" class="flex items-center space-x-2 mb-4">
+                        <img src="assets/icons/logo.png" alt="Al Bunyan Fest Logo" class="w-10 h-10">
+                        <span class="text-2xl font-bold text-white">AB<span class="gradient-text">Fest</span></span>
+                    </a>
+                    <p class="text-gray-400 mb-6">Persembahan Sekolah Al Bunyan. Tunjukkan Bakat, Raih Prestasi.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Navigasi</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="#kategori" class="text-gray-400 hover:text-white transition-colors">Kategori</a></li>
+                        <li><a href="#daftar-lomba" class="text-gray-400 hover:text-white transition-colors">Semua Lomba</a></li>
+                        <li><a href="#timeline" class="text-gray-400 hover:text-white transition-colors">Timeline</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Kategori</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#daftar-lomba" class="text-gray-400 hover:text-white transition-colors">Olahraga</a></li>
+                        <li><a href="#daftar-lomba" class="text-gray-400 hover:text-white transition-colors">Sains</a></li>
+                        <li><a href="#daftar-lomba" class="text-gray-400 hover:text-white transition-colors">Seni</a></li>
+                        <li><a href="#daftar-lomba" class="text-gray-400 hover:text-white transition-colors">Keislaman</a></li>
+                        <li><a href="#daftar-lomba" class="text-gray-400 hover:text-white transition-colors">Kontes</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Hubungi Kami</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-user-friends mr-3 text-primary"></i>
+                            <span class="text-gray-400">Fahim (Olahraga)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-user-friends mr-3 text-primary"></i>
+                            <span class="text-gray-400">Ihsan (Sains)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-user-friends mr-3 text-primary"></i>
+                            <span class="text-gray-400">Azzam (Seni/Kontes)</span>
+                        </li>
+                         <li class="flex items-center">
+                            <i class="fas fa-user-friends mr-3 text-primary"></i>
+                            <span class="text-gray-400">Hilmi (Keislaman)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1 text-primary"></i>
+                            <span class="text-gray-400">Jl. Sekolah Al Bunyan No. 123, Bogor, Indonesia</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-500">
+                <p>&copy; 2025 Al Bunyan Fest. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <a href="#home" class="fixed bottom-6 right-6 gradient-bg text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:shadow-primary/40 transition-all duration-300 z-40">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // === 1. Mobile Menu Toggle (BARU: Animasi Halus & Auto-Close) ===
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = document.querySelectorAll('#mobile-menu a'); // Ambil semua link
+            
+            menuToggle.addEventListener('click', () => {
+                // Gunakan class custom 'is-open' untuk animasi
+                mobileMenu.classList.toggle('is-open'); 
+            });
+            
+            // Tambahkan event listener ke setiap link di menu seluler
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Tutup menu saat link diklik
+                    mobileMenu.classList.remove('is-open'); 
+                });
+            });
+            
+            // === 2. Dark Mode Toggle ===
+            const darkToggleDesktop = document.getElementById('dark-toggle-desktop');
+            const darkToggleMobile = document.getElementById('dark-toggle-mobile');
+            const htmlElement = document.documentElement;
+            
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    htmlElement.classList.add('dark');
+                    darkToggleDesktop.innerHTML = '<i class="fas fa-sun text-lg text-yellow-400"></i>';
+                    darkToggleMobile.innerHTML = '<i class="fas fa-sun text-lg text-yellow-400"></i>';
+                } else {
+                    htmlElement.classList.remove('dark');
+                    darkToggleDesktop.innerHTML = '<i class="fas fa-moon text-lg"></i>';
+                    darkToggleMobile.innerHTML = '<i class="fas fa-moon text-lg"></i>';
+                }
+            }
+            
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            applyTheme(savedTheme);
+            
+            function toggleTheme() {
+                const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                localStorage.setItem('theme', newTheme);
+                applyTheme(newTheme);
+            }
+            
+            darkToggleDesktop.addEventListener('click', toggleTheme);
+            darkToggleMobile.addEventListener('click', toggleTheme);
+            
+            // === 3. Navbar Scroll Effect ===
+            const navbar = document.getElementById('navbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('py-2');
+                    navbar.classList.remove('py-4');
+                } else {
+                    navbar.classList.add('py-4');
+                    navbar.classList.remove('py-2');
+                }
+            });
+            
+            // === 4. FAQ Accordion ===
+            const faqToggles = document.querySelectorAll('.faq-toggle');
+            
+            faqToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const targetId = toggle.getAttribute('data-target');
+                    const content = document.getElementById(targetId);
+                    const icon = toggle.querySelector('i');
+                    
+                    document.querySelectorAll('.faq-content').forEach(c => {
+                        if (c.id !== targetId) {
+                            c.classList.add('hidden');
+                            c.previousElementSibling.querySelector('i').classList.remove('rotate-180');
+                        }
+                    });
+                    
+                    content.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
+            // === 5. Counter-Up Function ===
+            function animateValue(obj, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString('id-ID');
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            // === 6. Intersection Observer (Scroll Reveal & Counter) ===
+            const sections = document.querySelectorAll('.reveal-section');
+            let statsAnimated = false; 
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('section-visible');
+                        if(entry.target.classList.contains('section-fade-up')) {
+                            entry.target.classList.add('animation-fade-in-up');
+                        }
+
+                        if (entry.target.id === 'statistik' && !statsAnimated) {
+                            const statPeserta = document.getElementById('stat-peserta');
+                            const statLomba = document.getElementById('stat-lomba');
+                            const statSekolah = document.getElementById('stat-sekolah');
+                            
+                            animateValue(statPeserta, 0, parseInt(statPeserta.dataset.target), 2000);
+                            animateValue(statLomba, 0, parseInt(statLomba.dataset.target), 2000);
+                            animateValue(statSekolah, 0, parseInt(statSekolah.dataset.target), 2000);
+                            
+                            statsAnimated = true;
+                        }
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+            
+        });
+    </script>
+
+</body>
+</html>
