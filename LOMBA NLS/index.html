@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduComp | Platform Lomba SMA</title>
+    
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'accent': '#E0FFE9',
+                        'background': '#F5FFF9',
+                        'text-primary': '#08211C',
+                        'gradient-start': '#00B0FF',
+                        'gradient-end': '#00E676',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #00B0FF, #00E676);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #00B0FF, #00E676);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        /* Kelas untuk section yang disembunyikan */
+        .section-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        /* Kelas untuk section yang dimunculkan */
+        .section-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background-color: rgba(245, 255, 249, 0.85);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary font-poppins">
+    <header class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4">
+            <div class="nav-blur rounded-2xl shadow-lg py-3 px-6 flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="assets/icons/logo.png" alt="EduComp Logo" class="w-10 h-10 mr-3">
+                    <h1 class="text-2xl font-bold">Edu<span class="gradient-text">Comp</span></h1>
+                </div>
+                <nav class="hidden lg:block">
+                    <ul class="flex space-x-10">
+                        <li><a href="#home" class="font-medium hover:text-gradient-start transition-colors duration-300">Beranda</a></li>
+                        <li><a href="#lomba" class="font-medium hover:text-gradient-start transition-colors duration-300">Lomba</a></li>
+                        <li><a href="#kategori" class="font-medium hover:text-gradient-start transition-colors duration-300">Kategori</a></li>
+                        <li><a href="#testimoni" class="font-medium hover:text-gradient-start transition-colors duration-300">Testimoni</a></li>
+                        <li><a href="#faq" class="font-medium hover:text-gradient-start transition-colors duration-300">FAQ</a></li>
+                    </ul>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <button class="hidden md:block px-5 py-2 rounded-full font-medium hover:bg-accent transition-colors duration-300">Masuk</button>
+                    <button class="gradient-bg text-white px-5 py-2 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300">Daftar</button>
+                    <button class="lg:hidden text-text-primary">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="pt-32 pb-20 lg:pt-40 lg:pb-28 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5">
+            <div class="absolute top-1/4 left-1/4 w-72 h-72 rounded-full gradient-bg floating"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full gradient-bg floating" style="animation-delay: 2s;"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        Temukan <span class="gradient-text">Lomba Terbaik</span> untuk Siswa SMA
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl">
+                        Platform terdepan untuk informasi lomba akademik dan non-akademik terbaru. Tingkatkan prestasimu dengan mengikuti kompetisi yang tepat!
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="gradient-bg text-white px-8 py-4 rounded-2xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center">
+                            <span>Jelajahi Lomba</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        <button class="border-2 border-gradient-start text-gradient-start px-8 py-4 rounded-2xl font-medium hover:bg-accent transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-play-circle mr-2"></i>
+                            <span>Tonton Video</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="w-80 h-80 lg:w-96 lg:h-96 gradient-bg rounded-full flex items-center justify-center floating">
+                            <div class="w-64 h-64 lg:w-80 lg:h-80 bg-white rounded-full flex items-center justify-center shadow-2xl">
+                                <div class="text-center p-8">
+                                    <i class="fas fa-trophy text-6xl gradient-text mb-4"></i>
+                                    <h3 class="text-2xl font-bold gradient-text">500+ Lomba</h3>
+                                    <p class="text-gray-600 mt-2">Tersedia untuk diikuti</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -right-4 glass-effect rounded-2xl p-4 w-40 shadow-lg">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gradient-start rounded-full flex items-center justify-center text-white mr-3">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold">15K+</p>
+                                    <p class="text-xs text-gray-600">Siswa</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 glass-effect rounded-2xl p-4 w-40 shadow-lg">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gradient-end rounded-full flex items-center justify-center text-white mr-3">
+                                    <i class="fas fa-school"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold">120+</p>
+                                    <p class="text-xs text-gray-600">Sekolah</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kategori" class="py-16 lg:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Jelajahi Berbagai <span class="gradient-text">Kategori Lomba</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Temukan lomba berdasarkan minat dan bakat Anda dengan berbagai kategori yang tersedia</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-background rounded-2xl p-6 card-hover border border-accent">
+                    <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-2xl mb-6">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Sains & Teknologi</h3>
+                    <p class="text-gray-600 mb-6">Olimpiade sains, robotika, coding, dan inovasi teknologi lainnya</p>
+                    <a href="#" class="text-gradient-start font-medium flex items-center">
+                        <span>Jelajahi</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-background rounded-2xl p-6 card-hover border border-accent">
+                    <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-2xl mb-6">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Seni & Budaya</h3>
+                    <p class="text-gray-600 mb-6">Lukis, musik, tari, teater, dan berbagai ekspresi seni lainnya</p>
+                    <a href="#" class="text-gradient-start font-medium flex items-center">
+                        <span>Jelajahi</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-background rounded-2xl p-6 card-hover border border-accent">
+                    <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-2xl mb-6">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Bahasa & Sastra</h3>
+                    <p class="text-gray-600 mb-6">Debat, pidato, menulis kreatif, dan kompetisi bahasa asing</p>
+                    <a href="#" class="text-gradient-start font-medium flex items-center">
+                        <span>Jelajahi</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-background rounded-2xl p-6 card-hover border border-accent">
+                    <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-2xl mb-6">
+                        <i class="fas fa-basketball-ball"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Olahraga</h3>
+                    <p class="text-gray-600 mb-6">Berbagai cabang olahraga individu dan tim untuk siswa SMA</p>
+                    <a href="#" class="text-gradient-start font-medium flex items-center">
+                        <span>Jelajahi</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lomba" class="py-16 lg:py-24 bg-background">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center mb-12">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Lomba Terbaru</span> untuk Anda</h2>
+                    <p class="text-gray-600 max-w-2xl">Temukan lomba-lomba terkini dengan deadline pendaftaran yang masih terbuka</p>
+                </div>
+                <div class="mt-6 lg:mt-0">
+                    <button class="gradient-bg text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300">
+                        Lihat Semua Lomba
+                    </button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl overflow-hidden card-hover border border-accent">
+                    <div class="h-48 relative">
+                        <div class="absolute inset-0 gradient-bg opacity-90"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-laptop-code text-white text-6xl"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white text-gradient-start px-3 py-1 rounded-full text-sm font-medium">
+                            Teknologi
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Kompetisi Coding Nasional 2023</h3>
+                        <p class="text-gray-600 mb-4">Ajang kompetisi pemrograman untuk siswa SMA dengan berbagai kategori seperti web development, mobile apps, dan game development.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center text-gray-500">
+                                <i class="far fa-calendar mr-2"></i>
+                                <span class="text-sm">15 Sep 2023</span>
+                            </div>
+                            <button class="text-gradient-start font-medium flex items-center">
+                                <span>Detail</span>
+                                <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden card-hover border border-accent">
+                    <div class="h-48 relative">
+                        <div class="absolute inset-0 gradient-bg opacity-90"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-microscope text-white text-6xl"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white text-gradient-start px-3 py-1 rounded-full text-sm font-medium">
+                            Sains
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Olimpiade Biologi Nasional</h3>
+                        <p class="text-gray-600 mb-4">Kompetisi biologi tingkat nasional untuk siswa SMA dengan ujian teori dan praktikum untuk menguji pemahaman konsep biologi.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center text-gray-500">
+                                <i class="far fa-calendar mr-2"></i>
+                                <span class="text-sm">22 Sep 2023</span>
+                            </div>
+                            <button class="text-gradient-start font-medium flex items-center">
+                                <span>Detail</span>
+                                <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden card-hover border border-accent">
+                    <div class="h-48 relative">
+                        <div class="absolute inset-0 gradient-bg opacity-90"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-paint-brush text-white text-6xl"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white text-gradient-start px-3 py-1 rounded-full text-sm font-medium">
+                            Seni
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Festival Seni Pelajar Indonesia</h3>
+                        <p class="text-gray-600 mb-4">Kompetisi seni terbesar untuk siswa SMA dengan kategori lukis, tari, musik, dan teater. Tunjukkan bakat senimu di panggung nasional!</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center text-gray-500">
+                                <i class="far fa-calendar mr-2"></i>
+                                <span class="text-sm">5 Okt 2023</span>
+                            </div>
+                            <button class="text-gradient-start font-medium flex items-center">
+                                <span>Detail</span>
+                                <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Mengapa Memilih <span class="gradient-text">EduComp?</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Platform kami menawarkan pengalaman terbaik dalam mencari dan mengikuti lomba untuk siswa SMA</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-3xl mx-auto mb-6">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Notifikasi Real-time</h3>
+                    <p class="text-gray-600">Dapatkan pemberitahuan instan tentang lomba baru, deadline pendaftaran, dan pengumuman hasil</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-3xl mx-auto mb-6">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Filter Advanced</h3>
+                    <p class="text-gray-600">Temukan lomba yang tepat dengan filter berdasarkan kategori, lokasi, tingkat kesulitan, dan deadline</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-3xl mx-auto mb-6">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Tracking Progress</h3>
+                    <p class="text-gray-600">Pantau perkembangan dan riwayat partisipasi lomba Anda dalam satu dashboard terpusat</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimoni" class="py-16 lg:py-24 bg-background">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Apa Kata <span class="gradient-text">Mereka?</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Lihat pengalaman siswa-siswi SMA yang telah berhasil meraih prestasi melalui platform kami</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-6 card-hover border border-accent">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            AS
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Ahmad Syafiq</h4>
+                            <p class="text-gray-600 text-sm">Juara 1 Olimpiade Matematika</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Melalui EduComp, saya bisa menemukan lomba-lomba yang sesuai dengan minat saya. Berkat informasi yang akurat dan tepat waktu, saya berhasil memenangkan Olimpiade Matematika Nasional!"</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 card-hover border border-accent">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            DR
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Dinda Rahma</h4>
+                            <p class="text-gray-600 text-sm">Juara 2 Lomba Debat Bahasa Inggris</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Saya sangat terbantu dengan adanya platform EduComp. Informasi lomba selalu update dan lengkap. Sekarang saya lebih mudah menemukan lomba yang sesuai dengan bakat dan minat saya."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 card-hover border border-accent">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            RS
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Rizky Saputra</h4>
+                            <p class="text-gray-600 text-sm">Finalis Kompetisi Robotika</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Platform yang sangat bermanfaat bagi siswa SMA seperti saya. Saya bisa menemukan berbagai lomba teknologi dan mengasah kemampuan coding saya. Terima kasih EduComp!"</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 lg:py-24 gradient-bg text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Siap Mengembangkan <span class="text-text-primary">Bakat dan Potensimu?</span></h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">Daftar sekarang dan temukan lomba yang tepat untuk mengasah kemampuan dan meraih prestasi!</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <button class="bg-white text-gradient-start px-8 py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300">
+                    Daftar Sekarang
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-2xl font-bold hover:bg-white hover:text-gradient-start transition-all duration-300">
+                    Pelajari Lebih Lanjut
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 lg:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Pertanyaan <span class="gradient-text">yang Sering Diajukan</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Temukan jawaban untuk pertanyaan umum seputar platform dan partisipasi lomba</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-background rounded-2xl p-6 mb-6 card-hover border border-accent">
+                    <h3 class="text-xl font-bold mb-3 flex justify-between items-center">
+                        <span>Bagaimana cara mendaftar lomba melalui EduComp?</span>
+                        <i class="fas fa-chevron-down text-gradient-start"></i>
+                    </h3>
+                    <p class="text-gray-600">Pertama, buat akun di EduComp. Kemudian, jelajahi lomba yang tersedia, pilih lomba yang diminati, dan ikuti proses pendaftaran yang tertera di halaman detail lomba.</p>
+                </div>
+                
+                <div class="bg-background rounded-2xl p-6 mb-6 card-hover border border-accent">
+                    <h3 class="text-xl font-bold mb-3 flex justify-between items-center">
+                        <span>Apakah ada biaya untuk menggunakan platform EduComp?</span>
+                        <i class="fas fa-chevron-down text-gradient-start"></i>
+                    </h3>
+                    <p class="text-gray-600">EduComp sepenuhnya gratis untuk digunakan oleh siswa SMA. Namun, beberapa lomba mungkin memerlukan biaya pendaftaran yang ditentukan oleh penyelenggara lomba.</p>
+                </div>
+                
+                <div class="bg-background rounded-2xl p-6 mb-6 card-hover border border-accent">
+                    <h3 class="text-xl font-bold mb-3 flex justify-between items-center">
+                        <span>Bagaimana jika saya ingin mengajukan lomba untuk ditambahkan?</span>
+                        <i class="fas fa-chevron-down text-gradient-start"></i>
+                    </h3>
+                    <p class="text-gray-600">Anda dapat mengajukan lomba melalui form yang tersedia di halaman "Ajukan Lomba". Tim kami akan memverifikasi dan menambahkan lomba tersebut ke platform dalam 1-3 hari kerja.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-text-primary text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <img src="assets/icons/logo.png" alt="EduComp Logo" class="w-10 h-10 mr-3">
+                        <h3 class="text-2xl font-bold">Edu<span class="gradient-text">Comp</span></h3>
+                    </div>
+                    <p class="text-gray-300 mb-6">Platform informasi lomba terpercaya untuk siswa SMA di Indonesia.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gradient-start transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gradient-start transition-colors duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gradient-start transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gradient-start transition-colors duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Tautan Cepat</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Beranda</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Semua Lomba</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Kategori</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Panduan</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Kategori</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Sains & Teknologi</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Seni & Budaya</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Bahasa & Sastra</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Olahraga</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Kontak</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-gradient-start"></i>
+                            <span class="text-gray-300">info@educomp.id</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-gradient-start"></i>
+                            <span class="text-gray-300">+62 21 1234 5678</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1 text-gradient-start"></i>
+                            <span class="text-gray-300">Jl. Pendidikan No. 123, Jakarta Pusat, Indonesia</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 EduComp. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="fixed bottom-6 right-6 gradient-bg text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition-all duration-300 floating">
+        <i class="fas fa-comment-alt text-xl"></i>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. Tambahkan kelas 'section-fade' ke semua section KECUALI yang pertama (hero)
+            document.querySelectorAll('section').forEach((section, index) => {
+                // index > 0 berarti semua section selain section pertama
+                if (index > 0) {
+                    section.classList.add('section-fade');
+                }
+            });
+            
+            // 2. SEKARANG, setelah kelas ditambahkan, baru kita pilih semua section yang punya kelas '.section-fade'
+            const sectionsToAnimate = document.querySelectorAll('.section-fade');
+            
+            // 3. Siapkan IntersectionObserver
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Jika section masuk ke layar
+                    if (entry.isIntersecting) {
+                        // Tambahkan kelas 'section-visible' untuk memunculkannya
+                        entry.target.classList.add('section-visible');
+                        // Optimasi: Berhenti mengamati section ini setelah animasinya berjalan
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1 // Animasi akan ter-trigger saat 10% dari section terlihat
+            });
+            
+            // 4. Amati semua section yang telah kita pilih
+            sectionsToAnimate.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    // Tambahkan blur saat di-scroll
+                    navbar.classList.add('nav-blur');
+                } else {
+                    // Hapus blur saat di paling atas
+                    navbar.classList.remove('nav-blur');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
