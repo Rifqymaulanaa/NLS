@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduComp | Platform Lomba SMA Paling Modern</title>
+    <title>Al Bunyan Fest 2025 | Festival Lomba SD & SMP</title>
     
     <link rel="icon" type="image/png" href="assets/icons/favicon.png">
     
@@ -25,6 +25,10 @@
                         'background': '#F5FFF9',
                         'text_primary': '#08211C',
                         'text_secondary': '#50645F',
+                        
+                        /* Warna dari file original untuk Hero */
+                        'gradient-start': '#00B0FF',
+                        'gradient-end': '#00E676',
                     },
                     fontFamily: {
                         'poppins': ['Poppins', 'sans-serif'],
@@ -32,7 +36,7 @@
                     keyframes: {
                         floating: {
                             '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
+                            '50%': { transform: 'translateY(-15px)' }, // Dibuat lebih halus
                         },
                         fadeInUp: {
                            '0%': { opacity: 0, transform: 'translateY(30px) scale(0.98)' },
@@ -50,7 +54,7 @@
     
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', 'sans-serif';
         }
         
         /* Custom Gradient Text */
@@ -66,21 +70,18 @@
         }
         
         /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #00E676;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00B0FF;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #00E676; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00B0FF; }
         
+        /* Glass Effect (dari file original) */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
         /* Kelas untuk Intersection Observer */
         .reveal-section {
             opacity: 0;
@@ -104,15 +105,15 @@
         <nav class="container mx-auto px-4 md:px-6 py-4">
             <div class="flex justify-between items-center bg-white/50 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl shadow-lg px-6 py-3">
                 <a href="#home" class="flex items-center space-x-2">
-                    <img src="assets/icons/logo.png" alt="EduComp Logo" class="w-10 h-10">
-                    <span class="text-2xl font-bold">Edu<span class="gradient-text">Comp</span></span>
+                    <img src="assets/icons/logo.png" alt="Al Bunyan Fest Logo" class="w-10 h-10">
+                    <span class="text-2xl font-bold"><span class="gradient-text">Next Leader Summit</span></span>
                 </a>
                 
                 <ul class="hidden lg:flex items-center space-x-8 font-medium">
                     <li><a href="#home" class="hover:text-primary transition-colors">Beranda</a></li>
                     <li><a href="#kategori" class="hover:text-primary transition-colors">Kategori</a></li>
-                    <li><a href="#unggulan" class="hover:text-primary transition-colors">Unggulan</a></li>
-                    <li><a href="#fitur" class="hover:text-primary transition-colors">Fitur</a></li>
+                    <li><a href="#unggulan" class="hover:text-primary transition-colors">Kompetisi</a></li>
+                    <li><a href="#timeline" class="hover:text-primary transition-colors">Timeline</a></li>
                     <li><a href="#faq" class="hover:text-primary transition-colors">FAQ</a></li>
                 </ul>
                 
@@ -120,7 +121,6 @@
                     <button id="dark-toggle-desktop" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-accent dark:hover:bg-gray-700">
                         <i class="fas fa-moon text-lg"></i>
                     </button>
-                    <button class="px-5 py-2 rounded-xl font-medium hover:bg-accent dark:hover:bg-gray-700 transition-colors">Masuk</button>
                     <button class="gradient-bg text-white px-5 py-2 rounded-xl font-medium shadow-lg hover:shadow-primary/40 transition-all duration-300">Daftar</button>
                 </div>
                 
@@ -138,12 +138,11 @@
                 <ul class="flex flex-col space-y-2 p-4 font-medium">
                     <li><a href="#home" class="block py-2 px-4 rounded-lg hover:bg-accent dark:hover:bg-gray-700">Beranda</a></li>
                     <li><a href="#kategori" class="block py-2 px-4 rounded-lg hover:bg-accent dark:hover:bg-gray-700">Kategori</a></li>
-                    <li><a href="#unggulan" class="block py-2 px-4 rounded-lg hover:bg-accent dark:hover:bg-gray-700">Unggulan</a></li>
-                    <li><a href="#fitur" class="block py-2 px-4 rounded-lg hover:bg-accent dark:hover:bg-gray-700">Fitur</a></li>
+                    <li><a href="#unggulan" class="block py-2 px-4 rounded-lg hover:bg-accent dark:hover:bg-gray-700">Kompetisi</a></li>
+                    <li><a href="#timeline" class="block py-2 px-4 rounded-lg hover:bg-accent dark:hover:bg-gray-700">Timeline</a></li>
                     <li><a href="#faq" class="block py-2 px-4 rounded-lg hover:bg-accent dark:hover:bg-gray-700">FAQ</a></li>
                 </ul>
                 <div class="border-t border-gray-200 dark:border-gray-700 p-4 space-y-3">
-                    <button class="w-full px-5 py-2 rounded-xl font-medium bg-accent dark:bg-gray-700 transition-colors">Masuk</button>
                     <button class="w-full gradient-bg text-white px-5 py-2 rounded-xl font-medium shadow-lg">Daftar</button>
                 </div>
             </div>
@@ -152,32 +151,67 @@
 
     <main>
         
-        <section id="home" class="pt-32 pb-16 md:pt-40 md:pb-24 container mx-auto px-4 md:px-6 reveal-section">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="text-center lg:text-left">
-                    <span class="inline-block bg-accent dark:bg-gray-700 text-secondary dark:text-primary font-medium px-4 py-1 rounded-full text-sm">#PlatformJuara</span>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold my-4 leading-tight">
-                        Temukan <span class="gradient-text">Bakatmu</span>, Raih Prestasimu.
-                    </h1>
-                    <p class="text-lg text-text_secondary dark:text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0">
-                        EduComp adalah platform terpusat untuk semua informasi lomba SMA/SMK di Indonesia. Jangan lewatkan kesempatan emas untuk jadi juara!
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <button class="gradient-bg text-white px-8 py-3 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-primary/40 transition-all duration-300 flex items-center justify-center gap-2">
-                            <i class="fas fa-search"></i>
-                            <span>Cari Lomba</span>
-                        </button>
-                        <button class="bg-white dark:bg-gray-700 px-8 py-3 rounded-2xl font-semibold text-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
-                            <i class="fas fa-play-circle"></i>
-                            <span>Cara Kerja</span>
-                        </button>
+        <section id="home" class="pt-32 pb-20 lg:pt-40 lg:pb-28 relative overflow-hidden reveal-section">
+            <div class="absolute top-0 left-0 w-full h-full opacity-5 dark:opacity-10">
+                <div class="absolute top-1/4 left-1/4 w-72 h-72 rounded-full gradient-bg floating"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full gradient-bg floating" style="animation-delay: 2s;"></div>
+            </div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0 text-center lg:text-left">
+                        <span class="inline-block bg-accent dark:bg-gray-700 text-secondary dark:text-primary font-medium px-4 py-1 rounded-full text-sm mb-4">SEKOLAH AL BUNYAN PROUDLY PRESENTS</span>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                            Selamat Datang di <span class="gradient-text">Next Leader Summit</span> 2025
+                        </h1>
+                        <p class="text-lg md:text-xl text-text_secondary dark:text-gray-400 mb-10 max-w-2xl mx-auto lg:mx-0">
+                            Festival lomba Siswa SD & SMP persembahan Sekolah Al Bunyan. Tunjukkan bakat, raih prestasi, dan jadilah juara sejati!
+                        </p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
+                            <button class="gradient-bg text-white px-8 py-4 rounded-2xl font-medium shadow-lg hover:shadow-primary/40 transition-all duration-300 flex items-center justify-center gap-2">
+                                <span>Daftar Lomba</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <a href="#timeline" class="bg-white dark:bg-gray-700 border-2 border-gradient-start text-gradient-start px-8 py-4 rounded-2xl font-medium hover:bg-accent dark:hover:bg-gray-600 transition-all duration-300 flex items-center justify-center gap-2">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Lihat Timeline</span>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="flex justify-center">
-                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                         alt="Siswa SMA berprestasi" 
-                         class="rounded-3xl shadow-2xl w-full max-w-md lg:max-w-none animate-floating">
+                    <div class="lg:w-1/2 flex justify-center">
+                        <div class="relative">
+                            <div class="w-80 h-80 lg:w-96 lg:h-96 gradient-bg rounded-full flex items-center justify-center floating">
+                                <div class="w-64 h-64 lg:w-80 lg:h-80 bg-background dark:bg-gray-800 rounded-full flex items-center justify-center shadow-2xl">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-trophy text-6xl gradient-text mb-4"></i>
+                                        <h3 class="text-2xl font-bold gradient-text">AB-Fest 2025</h3>
+                                        <p class="text-text_secondary dark:text-gray-400 mt-2">Tingkat SD & SMP</S>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute -top-4 -right-4 glass-effect dark:bg-gray-700/30 rounded-2xl p-4 w-44 shadow-lg">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-gradient-start rounded-full flex items-center justify-center text-white mr-3">
+                                        <i class="fas fa-layer-group"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold">5 Kategori</p>
+                                        <p class="text-xs text-text_secondary dark:text-gray-400">Lomba</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute -bottom-4 -left-4 glass-effect dark:bg-gray-700/30 rounded-2xl p-4 w-44 shadow-lg">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-gradient-end rounded-full flex items-center justify-center text-white mr-3">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold">14+ Lomba</p>
+                                        <p class="text-xs text-text_secondary dark:text-gray-400">Tersedia</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -185,15 +219,15 @@
         <section id="partners" class="py-16 reveal-section">
             <div class="container mx-auto px-4 md:px-6">
                 <h3 class="text-center text-xl font-medium text-text_secondary dark:text-gray-400 mb-8">
-                    Dipercaya oleh 100+ Sekolah & Institusi Pendidikan
+                    Didukung Oleh
                 </h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
-                    <i class="fas fa-university text-5xl text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition-colors mx-auto" title="Nama Partner"></i>
-                    <i class="fas fa-school text-5xl text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition-colors mx-auto" title="Nama Partner"></i>
-                    <i class="fas fa-building-columns text-5xl text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition-colors mx-auto" title="Nama Partner"></i>
-                    <i class="fas fa-microscope text-5xl text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition-colors mx-auto" title="Nama Partner"></i>
-                    <i class="fas fa-laptop-code text-5xl text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition-colors mx-auto" title="Nama Partner"></i>
-                    <i class="fas fa-book-open text-5xl text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition-colors mx-auto" title="Nama Partner"></i>
+                    <i class="fas fa-university text-5xl text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition-colors mx-auto" title="Nama Sponsor"></i>
+                    <i class="fas fa-school text-5xl text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition-colors mx-auto" title="Nama Sponsor"></i>
+                    <i class="fas fa-building-columns text-5xl text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition-colors mx-auto" title="Nama Sponsor"></i>
+                    <i class="fas fa-microscope text-5xl text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition-colors mx-auto" title="Nama Sponsor"></i>
+                    <i class="fas fa-laptop-code text-5xl text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition-colors mx-auto" title="Nama Sponsor"></i>
+                    <i class="fas fa-book-open text-5xl text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400 transition-colors mx-auto" title="Nama Sponsor"></i>
                 </div>
             </div>
         </section>
@@ -201,66 +235,101 @@
         <section id="kategori" class="py-16 bg-white dark:bg-gray-800 reveal-section section-fade-up">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="text-center max-w-2xl mx-auto mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Jelajahi <span class="gradient-text">Kategori Lomba</span></h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Jelajahi 5 <span class="gradient-text">Kategori Utama</span></h2>
                     <p class="text-lg text-text_secondary dark:text-gray-400">Temukan kompetisi yang paling sesuai dengan minat dan bakatmu.</p>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                     <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-300 group">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Olahraga</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Futsal & Catur</p>
+                    </div>
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-secondary/20 hover:-translate-y-2 transition-all duration-300 group">
                         <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
                             <i class="fas fa-flask"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Sains & Teknologi</h3>
-                        <p class="text-text_secondary dark:text-gray-400 text-sm">Olimpiade, Robotika, Coding, KTI, Roket Air.</p>
-                    </div>
-                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-secondary/20 hover:-translate-y-2 transition-all duration-300 group">
-                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Seni & Desain</h3>
-                        <p class="text-text_secondary dark:text-gray-400 text-sm">Lukis, Poster, Fotografi, Vocal, Band, Tari.</p>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Sains</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Olimpiade, LCC & Debat</p>
                     </div>
                     <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-300 group">
                         <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
-                            <i class="fas fa-comments"></i>
+                            <i class="fas fa-palette"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Bahasa & Debat</h3>
-                        <p class="text-text_secondary dark:text-gray-400 text-sm">Debat, Pidato, Storytelling, Puisi, Esei.</p>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Seni</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Poster, Art Spark & Videografi</p>
                     </div>
                     <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-secondary/20 hover:-translate-y-2 transition-all duration-300 group">
                         <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
-                            <i class="fas fa-basketball-ball"></i>
+                            <i class="fas fa-quran"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Olahraga & Lainnya</h3>
-                        <p class="text-text_secondary dark:text-gray-400 text-sm">Futsal, Basket, E-Sports, Cerdas Cermat.</p>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Keislaman</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Da'i Cilik, MHQ & MTQ</p>
+                    </div>
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-300 group">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Kontes</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Story Telling, Pidato & Menyanyi</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <section id="cara-kerja" class="py-20 container mx-auto px-4 md:px-6 reveal-section section-fade-up">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Hanya <span class="gradient-text">3 Langkah Mudah</span></h2>
-                <p class="text-lg text-text_secondary dark:text-gray-400">Mulai perjalanan prestasimu bersama kami tanpa ribet.</p>
+        <section id="timeline" class="py-20 container mx-auto px-4 md:px-6 reveal-section section-fade-up">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Timeline Acara</span></h2>
+                <p class="text-lg text-text_secondary dark:text-gray-400">Catat tanggalnya! Jangan sampai ketinggalan rangkaian acara seru kami.</p>
             </div>
             
-            <div class="relative grid md:grid-cols-3 gap-8 md:gap-16">
-                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 border-b-2 border-dashed border-primary -translate-y-12"></div>
+            <div class="relative grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
+                <div class="hidden lg:block absolute top-12 left-0 w-full h-1 border-b-2 border-dashed border-primary"></div>
                 
                 <div class="relative z-10 text-center">
-                    <div class="w-24 h-24 bg-white dark:bg-gray-800 border-4 border-primary rounded-full flex items-center justify-center text-primary text-4xl font-bold mx-auto mb-4 shadow-lg">1</div>
-                    <h3 class="text-2xl font-bold mb-2">Cari Lomba</h3>
-                    <p class="text-text_secondary dark:text-gray-400">Gunakan filter canggih kami untuk menemukan lomba yang sesuai bakatmu.</p>
+                    <div class="w-24 h-24 bg-white dark:bg-gray-800 border-4 border-primary rounded-full flex items-center justify-center text-primary text-2xl font-bold mx-auto mb-4 shadow-lg">Hari 1</div>
+                    <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside text-left sm:text-center">
+                        <li>Pembukaan</li>
+                        <li>Futsal (Penyisihan)</li>
+                        <li>LCC Umum (Penyisihan)</li>
+                        <li>Art Spark</li>
+                    </ul>
                 </div>
                 <div class="relative z-10 text-center">
-                    <div class="w-24 h-24 bg-white dark:bg-gray-800 border-4 border-primary rounded-full flex items-center justify-center text-primary text-4xl font-bold mx-auto mb-4 shadow-lg">2</div>
-                    <h3 class="text-2xl font-bold mb-2">Daftar & Persiapan</h3>
-                    <p class="text-text_secondary dark:text-gray-400">Daftar langsung melalui platform atau link resmi, lalu persiapkan dirimu.</p>
+                    <div class="w-24 h-24 bg-white dark:bg-gray-800 border-4 border-primary rounded-full flex items-center justify-center text-primary text-2xl font-bold mx-auto mb-4 shadow-lg">Hari 2</div>
+                    <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside text-left sm:text-center">
+                        <li>Futsal (Penyisihan)</li>
+                        <li>Olimpiade MTK</li>
+                        <li>MTQ</li>
+                    </ul>
                 </div>
                 <div class="relative z-10 text-center">
-                    <div class="w-24 h-24 bg-white dark:bg-gray-800 border-4 border-primary rounded-full flex items-center justify-center text-primary text-4xl font-bold mx-auto mb-4 shadow-lg">3</div>
-                    <h3 class="text-2xl font-bold mb-2">Raih Juara!</h3>
-                    <p class="text-text_secondary dark:text-gray-400">Tunjukkan kemampuan terbaikmu dan jadilah sang juara berikutnya.</p>
+                    <div class="w-24 h-24 bg-white dark:bg-gray-800 border-4 border-primary rounded-full flex items-center justify-center text-primary text-2xl font-bold mx-auto mb-4 shadow-lg">Hari 3</div>
+                    <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside text-left sm:text-center">
+                        <li>Futsal (Final)</li>
+                        <li>Catur (Penyisihan)</li>
+                        <li>Olimpiade Sains</li>
+                        <li>MHQ</li>
+                    </ul>
+                </div>
+                <div class="relative z-10 text-center">
+                    <div class="w-24 h-24 bg-white dark:bg-gray-800 border-4 border-primary rounded-full flex items-center justify-center text-primary text-2xl font-bold mx-auto mb-4 shadow-lg">Hari 4</div>
+                    <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside text-left sm:text-center">
+                        <li>Catur (Final)</li>
+                        <li>Debat Umum</li>
+                        <li>Story Telling</li>
+                    </ul>
+                </div>
+                <div class="relative z-10 text-center">
+                    <div class="w-24 h-24 bg-white dark:bg-gray-800 border-4 border-primary rounded-full flex items-center justify-center text-primary text-2xl font-bold mx-auto mb-4 shadow-lg">Penutupan</div>
+                    <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside text-left sm:text-center">
+                        <li>Final LCC Umum</li>
+                        <li>Pidato 3 Bahasa</li>
+                        <li>Menyanyi</li>
+                        <li>Da'i Cilik</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -268,49 +337,49 @@
         <section id="unggulan" class="py-16 bg-white dark:bg-gray-800 reveal-section section-fade-up">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="text-center max-w-2xl mx-auto mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Lomba Unggulan</span> Bulan Ini</h2>
-                    <p class="text-lg text-text_secondary dark:text-gray-400">Jangan lewatkan kompetisi paling bergengsi dengan hadiah menarik!</p>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Kompetisi Unggulan</span></h2>
+                    <p class="text-lg text-text_secondary dark:text-gray-400">Jangan lewatkan kompetisi paling bergengsi di Al Bunyan Fest!</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-background dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden group transition-all duration-300 hover:shadow-primary/30">
                         <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Coding" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Teknologi</span>
+                            <img src="https://images.unsplash.com/photo-1521405617886-addc6e32F040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Futsal" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Olahraga</span>
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">National Coding Challenge 2025</h3>
-                            <p class="text-text_secondary dark:text-gray-400 text-sm mb-4">Adu skill pemrograman web & mobile app tingkat nasional.</p>
+                            <h3 class="text-xl font-bold mb-2">Futsal (SD & SMP)</h3>
+                            <p class="text-text_secondary dark:text-gray-400 text-sm mb-4">Adu skill dan strategi tim-mu di lapangan. Terbuka untuk tim SD & SMP (Lk).</p>
                             <div class="flex justify-between items-center text-sm">
-                                <span class="text-red-500 font-medium"><i class="fas fa-clock mr-1"></i> Deadline: 30 Nov</span>
+                                <span class="text-text_primary dark:text-gray-200 font-medium"><i class="fas fa-users mr-1"></i> Tim</span>
                                 <a href="#" class="font-bold text-primary group-hover:underline">Lihat Detail <i class="fas fa-arrow-right text-xs"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="bg-background dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden group transition-all duration-300 hover:shadow-secondary/30">
                         <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1579762715118-a6f3d5087c19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Seni" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-4 left-4 bg-secondary text-text_primary px-3 py-1 rounded-full text-sm font-medium">Seni</span>
+                            <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba LCC" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-4 left-4 bg-secondary text-text_primary px-3 py-1 rounded-full text-sm font-medium">Sains</span>
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Festival Poster Digital Kreatif</h3>
-                            <p class="text-text_secondary dark:text-gray-400 text-sm mb-4">Tunjukkan kreativitas desainmu dan menangkan jutaan rupiah.</p>
+                            <h3 class="text-xl font-bold mb-2">LCC Umum (SD & SMP)</h3>
+                            <p class="text-text_secondary dark:text-gray-400 text-sm mb-4">Lomba Cepat Tepat menguji wawasan umum, sains, dan pengetahuan agama.</p>
                             <div class="flex justify-between items-center text-sm">
-                                <span class="text-red-500 font-medium"><i class="fas fa-clock mr-1"></i> Deadline: 25 Nov</span>
+                                <span class="text-text_primary dark:text-gray-200 font-medium"><i class="fas fa-user-friends mr-1"></i> Tim (Pr/Lk)</span>
                                 <a href="#" class="font-bold text-primary group-hover:underline">Lihat Detail <i class="fas fa-arrow-right text-xs"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="bg-background dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden group transition-all duration-300 hover:shadow-primary/30">
                         <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Debat" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Bahasa</span>
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Seni</span>
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">High School English Debate Open</h3>
-                            <p class="text-text_secondary dark:text-gray-400 text-sm mb-4">Kompetisi debat bahasa Inggris paling bergengsi tahun ini.</p>
+                            <h3 class="text-xl font-bold mb-2">Videografi (Online)</h3>
+                            <p class="text-text_secondary dark:text-gray-400 text-sm mb-4">Buat video promosi kreatif tentang Sekolah Al Bunyan. Terbuka untuk SMP (Online).</p>
                             <div class="flex justify-between items-center text-sm">
-                                <span class="text-red-500 font-medium"><i class="fas fa-clock mr-1"></i> Deadline: 1 Des</span>
+                                <span class="text-text_primary dark:text-gray-200 font-medium"><i class="fas fa-video mr-1"></i> SMP (Online)</span>
                                 <a href="#" class="font-bold text-primary group-hover:underline">Lihat Detail <i class="fas fa-arrow-right text-xs"></i></a>
                             </div>
                         </div>
@@ -324,62 +393,62 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     <div>
                         <i class="fas fa-users text-5xl mb-4 opacity-80"></i>
-                        <h3 id="stat-siswa" data-target="15000" class="text-5xl font-bold mb-2">0</h3>
-                        <p class="text-xl font-medium opacity-90">Siswa Terdaftar</p>
+                        <h3 id="stat-peserta" data-target="1500" class="text-5xl font-bold mb-2">0</h3>
+                        <p class="text-xl font-medium opacity-90">Total Peserta</p>
                     </div>
                     <div>
                         <i class="fas fa-trophy text-5xl mb-4 opacity-80"></i>
-                        <h3 id="stat-lomba" data-target="500" class="text-5xl font-bold mb-2">0</h3>
-                        <p class="text-xl font-medium opacity-90">Lomba Dipublikasi</p>
+                        <h3 id="stat-lomba" data-target="14" class="text-5xl font-bold mb-2">0</h3>
+                        <p class="text-xl font-medium opacity-90">Total Kompetisi</p>
                     </div>
                     <div>
                         <i class="fas fa-school text-5xl mb-4 opacity-80"></i>
-                        <h3 id="stat-sekolah" data-target="120" class="text-5xl font-bold mb-2">0</h3>
-                        <p class="text-xl font-medium opacity-90">Sekolah Mitra</p>
+                        <h3 id="stat-sekolah" data-target="50" class="text-5xl font-bold mb-2">0</h3>
+                        <p class="text-xl font-medium opacity-90">Sekolah Berpartisipasi</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <section id="fitur" class="py-20 bg-white dark:bg-gray-800 reveal-section section-fade-up">
+        <section id="hadiah" class="py-20 bg-white dark:bg-gray-800 reveal-section section-fade-up">
             <div class="container mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-12 items-center">
                 <div class="flex justify-center">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                         alt="Siswa menggunakan platform EduComp" 
+                    <img src="https://images.unsplash.com/photo-1593011030182-702341b83b37?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                         alt="Piala dan Medali" 
                          class="rounded-3xl shadow-2xl w-full max-w-md lg:max-w-none">
                 </div>
                 
                 <div class="max-w-xl">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Kenapa Memilih <span class="gradient-text">EduComp?</span></h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Raih <span class="gradient-text">Hadiah & Penghargaan</span></h2>
                     <p class="text-lg text-text_secondary dark:text-gray-400 mb-8">
-                        Kami merancang platform ini dengan fitur-fitur terbaik untuk membantumu fokus meraih prestasi.
+                        Bukan hanya pengalaman, bawa pulang piala, medali, sertifikat, dan uang pembinaan jutaan rupiah!
                     </p>
                     <ul class="space-y-6">
                         <li class="flex items-start space-x-4">
                             <div class="w-12 h-12 bg-accent dark:bg-gray-700 text-primary dark:text-secondary text-xl rounded-full flex-shrink-0 flex items-center justify-center">
-                                <i class="fas fa-bell"></i>
+                                <i class="fas fa-trophy"></i>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold mb-1">Notifikasi Real-time</h3>
-                                <p class="text-text_secondary dark:text-gray-400">Dapatkan pengingat deadline dan info lomba baru langsung ke email atau HP-mu.</p>
+                                <h3 class="text-xl font-bold mb-1">Piala Bergilir & Tetap</h3>
+                                <p class="text-text_secondary dark:text-gray-400">Piala eksklusif untuk Juara 1, 2, 3 dan Juara Umum.</p>
                             </div>
                         </li>
                         <li class="flex items-start space-x-4">
                             <div class="w-12 h-12 bg-accent dark:bg-gray-700 text-primary dark:text-secondary text-xl rounded-full flex-shrink-0 flex items-center justify-center">
-                                <i class="fas fa-filter"></i>
+                                <i class="fas fa-money-bill-wave"></i>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold mb-1">Filter Lomba Cerdas</h3>
-                                <p class="text-text_secondary dark:text-gray-400">Saring lomba berdasarkan kategori, jenjang, lokasi, dan biaya pendaftaran.</p>
+                                <h3 class="text-xl font-bold mb-1">Uang Pembinaan</h3>
+                                <p class="text-text_secondary dark:text-gray-400">Total uang pembinaan jutaan rupiah untuk para pemenang.</p>
                             </div>
                         </li>
                         <li class="flex items-start space-x-4">
                             <div class="w-12 h-12 bg-accent dark:bg-gray-700 text-primary dark:text-secondary text-xl rounded-full flex-shrink-0 flex items-center justify-center">
-                                <i class="fas fa-chart-line"></i>
+                                <i class="fas fa-certificate"></i>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold mb-1">Portfolio Prestasi</h3>
-                                <p class="text-text_secondary dark:text-gray-400">Catat semua riwayat lomba dan prestasimu dalam satu portfolio digital yang keren.</p>
+                                <h3 class="text-xl font-bold mb-1">Sertifikat Resmi</h3>
+                                <p class="text-text_secondary dark:text-gray-400">Semua peserta dan pemenang akan mendapatkan e-sertifikat resmi.</p>
                             </div>
                         </li>
                     </ul>
@@ -387,108 +456,149 @@
             </div>
         </section>
         
-        <section id="terbaru" class="py-16 container mx-auto px-4 md:px-6 reveal-section section-fade-up">
+        <section id="daftar-lomba" class="py-16 container mx-auto px-4 md:px-6 reveal-section section-fade-up">
             <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Lomba Terbaru</span> Lainnya</h2>
-                <p class="text-lg text-text_secondary dark:text-gray-400">Selalu ada kompetisi baru setiap harinya. Jangan sampai ketinggalan!</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Daftar Lengkap <span class="gradient-text">Kompetisi</span></h2>
+                <p class="text-lg text-text_secondary dark:text-gray-400">Inilah semua 14 kompetisi seru yang bisa kamu ikuti!</p>
             </div>
             
-            <div class="max-w-3xl mx-auto space-y-4">
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-accent dark:bg-gray-700 text-primary dark:text-secondary text-xl rounded-lg flex-shrink-0 flex items-center justify-center">
-                            <i class="fas fa-pen-nib"></i>
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 border-b-2 border-primary pb-2">Olahraga</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-futbol text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">Futsal</h4><span class="text-sm text-text_secondary dark:text-gray-400">SD & SMP (Lk)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: P. Anwar</span>
                         </div>
-                        <div>
-                            <h3 class="font-bold text-lg">Lomba Esai Nasional 2025</h3>
-                            <span class="text-sm text-text_secondary dark:text-gray-400">Universitas Juara</span>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-chess-king text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">Catur</h4><span class="text-sm text-text_secondary dark:text-gray-400">SD & SMP (Lk)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: P. Anwar</span>
                         </div>
-                    </div>
-                    <div class="flex items-center gap-4 ml-auto sm:ml-0">
-                         <span class="text-sm text-red-500 font-medium"><i class="fas fa-clock mr-1"></i> 10 Des</span>
-                         <a href="#" class="px-4 py-2 rounded-lg gradient-bg text-white font-medium text-sm">Detail</a>
                     </div>
                 </div>
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-accent dark:bg-gray-700 text-primary dark:text-secondary text-xl rounded-lg flex-shrink-0 flex items-center justify-center">
-                            <i class="fas fa-camera-retro"></i>
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 border-b-2 border-primary pb-2">Sains</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-calculator text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">Olimpiade MTK</h4><span class="text-sm text-text_secondary dark:text-gray-400">SD & SMP (Lk/Pr)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: P. Hamid</span>
                         </div>
-                        <div>
-                            <h3 class="font-bold text-lg">Lomba Fotografi Alam Liar</h3>
-                            <span class="text-sm text-text_secondary dark:text-gray-400">Klub Lensa Indonesia</span>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-atom text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">Olimpiade Sains</h4><span class="text-sm text-text_secondary dark:text-gray-400">SD & SMP (Lk/Pr)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: P. Hamid</span>
                         </div>
-                    </div>
-                    <div class="flex items-center gap-4 ml-auto sm:ml-0">
-                         <span class="text-sm text-red-500 font-medium"><i class="fas fa-clock mr-1"></i> 12 Des</span>
-                         <a href="#" class="px-4 py-2 rounded-lg gradient-bg text-white font-medium text-sm">Detail</a>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-brain text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">LCC Umum</h4><span class="text-sm text-text_secondary dark:text-gray-400">SD & SMP (Lk/Pr)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: P. Hamid</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-comments text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">Debat Bahasa Indonesia</h4><span class="text-sm text-text_secondary dark:text-gray-400">SMP (Lk/Pr)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: P. Hamid</span>
+                        </div>
                     </div>
                 </div>
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-accent dark:bg-gray-700 text-primary dark:text-secondary text-xl rounded-lg flex-shrink-0 flex items-center justify-center">
-                            <i class="fas fa-rocket"></i>
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 border-b-2 border-primary pb-2">Seni</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-laptop-code text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">Poster Digital (Online)</h4><span class="text-sm text-text_secondary dark:text-gray-400">SMP (Lk/Pr)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: Miss Juli</span>
                         </div>
-                        <div>
-                            <h3 class="font-bold text-lg">Kompetisi Roket Air Nasional</h3>
-                            <span class="text-sm text-text_secondary dark:text-gray-400">Pusat Sains Dirgantara</span>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-paint-brush text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">Art Spark</h4><span class="text-sm text-text_secondary dark:text-gray-400">SD (Lk/Pr)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: Miss Juli</span>
                         </div>
-                    </div>
-                    <div class="flex items-center gap-4 ml-auto sm:ml-0">
-                         <span class="text-sm text-red-500 font-medium"><i class="fas fa-clock mr-1"></i> 15 Des</span>
-                         <a href="#" class="px-4 py-2 rounded-lg gradient-bg text-white font-medium text-sm">Detail</a>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-video text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">Videografi (Online)</h4><span class="text-sm text-text_secondary dark:text-gray-400">SMP (Lk/Pr)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: Miss Juli</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-center mt-8">
-                <a href="#" class="font-bold text-lg text-primary hover:underline">Lihat Semua Lomba <i class="fas fa-arrow-right text-sm ml-1"></i></a>
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 border-b-2 border-primary pb-2">Keislaman</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-user-tie text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">Da'i Cilik</h4><span class="text-sm text-text_secondary dark:text-gray-400">SD (Lk)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: Ust. Wira</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-book-quran text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">MHQ (Hafalan)</h4><span class="text-sm text-text_secondary dark:text-gray-400">SD & SMP (Lk)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: Ust. Wira</span>
+                        </div>
+                         <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-kaaba text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">MTQ (Tilawah)</h4><span class="text-sm text-text_secondary dark:text-gray-400">SD & SMP (Lk)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: Ust. Wira</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 border-b-2 border-primary pb-2">Kontes</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-book-open-reader text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">Story Telling</h4><span class="text-sm text-text_secondary dark:text-gray-400">SMP (Lk/Pr)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: Miss Juli</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-language text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">Pidato 3 Bahasa</h4><span class="text-sm text-text_secondary dark:text-gray-400">SMP (Lk/Pr)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: Miss Juli</span>
+                        </div>
+                         <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex justify-between items-center">
+                            <div class="flex items-center gap-4"><i class="fas fa-music text-primary text-2xl w-8 text-center"></i> <div><h4 class="font-bold text-lg">Menyanyi</h4><span class="text-sm text-text_secondary dark:text-gray-400">SD & SMP (Lk/Pr)</span></div></div>
+                            <span class="font-medium text-text_secondary dark:text-gray-400">PIC: Miss Juli</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="testimoni" class="py-20 bg-accent dark:bg-gray-800 reveal-section section-fade-up">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="text-center max-w-2xl mx-auto mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Apa Kata <span class="gradient-text">Para Juara?</span></h2>
-                    <p class="text-lg text-text_secondary dark:text-gray-400">Dengarkan pengalaman mereka yang telah meraih prestasi bersama EduComp.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Apa Kata <span class="gradient-text">Alumni Juara?</span></h2>
+                    <p class="text-lg text-text_secondary dark:text-gray-400">Dengarkan pengalaman mereka di Al Bunyan Fest tahun lalu!</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg">
                         <i class="fas fa-quote-left text-primary text-3xl mb-4"></i>
                         <p class="text-text_secondary dark:text-gray-400 mb-6 italic">
-                            "EduComp bener-bener ngebantu aku nemu lomba coding yang pas. Fitur notifikasinya juara, gak pernah ketinggalan deadline lagi!"
+                            "Al Bunyan Fest tahun lalu seru banget! Lomba futsalnya kompetitif dan panitianya ramah-ramah. Nggak sabar ikut lagi tahun ini!"
                         </p>
                         <div class="flex items-center">
                             <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 1" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
                             <div>
                                 <h4 class="font-bold">Ahmad Rizal</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400">Juara 1 Lomba Web Dev</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400">Juara 1 Futsal SMP 2024</p>
                             </div>
                         </div>
                     </div>
                     <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg md:translate-y-6">
                         <i class="fas fa-quote-left text-primary text-3xl mb-4"></i>
                         <p class="text-text_secondary dark:text-gray-400 mb-6 italic">
-                            "Awalnya bingung mau ikut lomba apa, tapi berkat EduComp aku jadi tau ada lomba esai. Infonya lengkap banget, dari syarat sampai tips!"
+                            "Aku ikut LCC dan Olimpiade MTK. Soalnya menantang dan nambah banyak pengalaman. Senang banget bisa jadi juara 2 MTK!"
                         </p>
                         <div class="flex items-center">
                             <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 2" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
                             <div>
                                 <h4 class="font-bold">Siti Nuraeni</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400">Juara 2 Lomba Esai Nasional</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400">Juara 2 Olimpiade MTK SD 2024</p>
                             </div>
                         </div>
                     </div>
                     <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg">
                         <i class="fas fa-quote-left text-primary text-3xl mb-4"></i>
                         <p class="text-text_secondary dark:text-gray-400 mb-6 italic">
-                            "Platformnya keren dan gampang dipakai. Aku dan timku bisa nemu lomba debat dan akhirnya dapet Juara Harapan. Thanks EduComp!"
+                            "Ikut lomba Da'i Cilik di AB-Fest bikin aku makin percaya diri tampil di depan umum. Panggungnya megah dan jurinya profesional."
                         </p>
                         <div class="flex items-center">
                             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 3" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
                             <div>
                                 <h4 class="font-bold">Budi Santoso</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400">Finalis Lomba Debat</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400">Finalis Da'i Cilik SD 2024</p>
                             </div>
                         </div>
                     </div>
@@ -506,9 +616,9 @@
                  <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group">
                     <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
                     <div class="p-6">
-                        <span class="text-sm font-medium text-primary">Esai</span>
-                        <h3 class="text-xl font-bold my-2 hover:underline">5 Kesalahan Fatal yang Sering Dilakukan Pemula saat Lomba Esai</h3>
-                        <p class="text-text_secondary dark:text-gray-400 text-sm">Oleh: Rina S. - 3 Nov 2025</p>
+                        <span class="text-sm font-medium text-primary">LCC & Debat</span>
+                        <h3 class="text-xl font-bold my-2 hover:underline">5 Cara Berpikir Cepat dan Kritis Saat Lomba LCC</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Oleh: Tim Juri - 3 Nov 2025</p>
                     </div>
                 </div>
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group">
@@ -516,15 +626,15 @@
                     <div class="p-6">
                         <span class="text-sm font-medium text-primary">Produktivitas</span>
                         <h3 class="text-xl font-bold my-2 hover:underline">Manajemen Waktu: Kunci Sukses Juara Lomba Sambil Sekolah</h3>
-                        <p class="text-text_secondary dark:text-gray-400 text-sm">Oleh: Admin EduComp - 1 Nov 2025</p>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Oleh: Admin AB-Fest - 1 Nov 2025</p>
                     </div>
                 </div>
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group">
                     <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
                     <div class="p-6">
                         <span class="text-sm font-medium text-primary">Public Speaking</span>
-                        <h3 class="text-xl font-bold my-2 hover:underline">Cara Mengatasi Gugup Saat Presentasi Lomba di Depan Juri</h3>
-                        <p class="text-text_secondary dark:text-gray-400 text-sm">Oleh: Budi S. - 30 Okt 2025</p>
+                        <h3 class="text-xl font-bold my-2 hover:underline">Cara Mengatasi Gugup Saat Lomba Pidato atau Da'i Cilik</h3>
+                        <p class="text-text_secondary dark:text-gray-400 text-sm">Oleh: Ust. Wira - 30 Okt 2025</p>
                     </div>
                 </div>
             </div>
@@ -540,29 +650,29 @@
                 <div class="max-w-3xl mx-auto space-y-4" id="faq-container">
                     <div class="bg-background dark:bg-gray-700 rounded-2xl overflow-hidden shadow-sm">
                         <button class="faq-toggle w-full flex justify-between items-center p-6 font-bold text-lg text-left" data-target="faq-content-1">
-                            <span>Apakah EduComp gratis?</span>
+                            <span>Siapa saja yang bisa mendaftar?</span>
                             <i class="fas fa-chevron-down transition-transform duration-300"></i>
                         </button>
                         <div id="faq-content-1" class="faq-content hidden px-6 pb-6 text-text_secondary dark:text-gray-400">
-                            <p>Ya! Platform EduComp 100% gratis untuk semua siswa. Namun, beberapa lomba yang terdaftar mungkin memiliki biaya pendaftaran sendiri yang ditentukan oleh penyelenggara.</p>
+                            <p>Lomba ini terbuka untuk siswa/i SD dan SMP (atau sederajat) dari sekolah manapun. Pastikan untuk mendaftar sesuai jenjang yang ditentukan di setiap kategori lomba (misal: Futsal SD, Futsal SMP).</p>
                         </div>
                     </div>
                     <div class="bg-background dark:bg-gray-700 rounded-2xl overflow-hidden shadow-sm">
                         <button class="faq-toggle w-full flex justify-between items-center p-6 font-bold text-lg text-left" data-target="faq-content-2">
-                            <span>Bagaimana cara mendaftar lomba?</span>
+                            <span>Di mana lokasi lombanya?</span>
                             <i class="fas fa-chevron-down transition-transform duration-300"></i>
                         </button>
                         <div id="faq-content-2" class="faq-content hidden px-6 pb-6 text-text_secondary dark:text-gray-400">
-                            <p>Anda dapat mengklik tombol "Detail" atau "Daftar" pada setiap halaman lomba. Anda akan diarahkan ke halaman pendaftaran resmi yang disediakan oleh penyelenggara lomba tersebut.</p>
+                            <p>Semua lomba (kecuali yang ditandai 'Online') akan diadakan secara offline di Kampus Sekolah Al Bunyan. Alamat lengkap bisa Anda lihat di bagian footer website ini. Untuk lomba online, petunjuk teknis akan dikirim melalui email.</p>
                         </div>
                     </div>
                     <div class="bg-background dark:bg-gray-700 rounded-2xl overflow-hidden shadow-sm">
                         <button class="faq-toggle w-full flex justify-between items-center p-6 font-bold text-lg text-left" data-target="faq-content-3">
-                            <span>Bisakah saya mempublikasikan info lomba saya di sini?</span>
+                            <span>Berapa biaya pendaftarannya?</span>
                             <i class="fas fa-chevron-down transition-transform duration-300"></i>
                         </button>
                         <div id="faq-content-3" class="faq-content hidden px-6 pb-6 text-text_secondary dark:text-gray-400">
-                            <p>Tentu saja! Kami memiliki halaman "Publikasi Lomba" (saat ini sedang dalam pengembangan) di mana Anda dapat mengirimkan detail acara Anda untuk kami verifikasi dan tampilkan di platform.</p>
+                            <p>Biaya pendaftaran bervariasi untuk setiap lomba. Anda dapat melihat detail biaya pendaftaran, booklet, dan informasi lainnya setelah mengklik tombol "Daftar Lomba" dan memilih lomba yang diminati.</p>
                         </div>
                     </div>
                 </div>
@@ -571,10 +681,10 @@
         
         <section id="cta" class="py-20 gradient-bg text-white reveal-section">
             <div class="container mx-auto px-4 md:px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Mulai Perjalanan Prestasimu <br class="hidden sm:block"> Sekarang Juga!</h2>
-                <p class="text-lg mb-8 max-w-xl mx-auto opacity-90">Buat akun gratismu dan jangan pernah lewatkan satu pun kesempatan emas untuk jadi juara.</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Siap Jadi Juara di <br class="hidden sm:block"> Al Bunyan Fest 2025?</h2>
+                <p class="text-lg mb-8 max-w-xl mx-auto opacity-90">Jangan tunda lagi. Daftarkan dirimu atau tim sekolahmu dan raih prestasi gemilang!</p>
                 <button class="bg-white text-primary px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-white/40 hover:scale-105 transition-all duration-300">
-                    Daftar Gratis Sekarang
+                    Daftar Sekarang Juga!
                 </button>
             </div>
         </section>
@@ -586,35 +696,36 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div>
                     <a href="#home" class="flex items-center space-x-2 mb-4">
-                        <img src="assets/icons/logo.png" alt="EduComp Logo" class="w-10 h-10">
-                        <span class="text-2xl font-bold text-white">Edu<span class="gradient-text">Comp</span></span>
+                        <img src="assets/icons/logo.png" alt="Al Bunyan Fest Logo" class="w-10 h-10">
+                        <span class="text-2xl font-bold text-white">AB<span class="gradient-text">Fest</span></span>
                     </a>
-                    <p class="text-gray-400 mb-6">Platform informasi lomba terdepan untuk siswa SMA/SMK di Indonesia.</p>
+                    <p class="text-gray-400 mb-6">Persembahan Sekolah Al Bunyan. Tunjukkan Bakat, Raih Prestasi.</p>
                     <div class="flex space-x-4">
                         <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"><i class="fab fa-youtube"></i></a>
                         <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-bold text-white mb-4">Tautan Cepat</h4>
+                    <h4 class="text-lg font-bold text-white mb-4">Navigasi</h4>
                     <ul class="space-y-2">
                         <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Beranda</a></li>
                         <li><a href="#kategori" class="text-gray-400 hover:text-white transition-colors">Kategori</a></li>
-                        <li><a href="#unggulan" class="text-gray-400 hover:text-white transition-colors">Lomba Unggulan</a></li>
-                        <li><a href="#fitur" class="text-gray-400 hover:text-white transition-colors">Fitur Kami</a></li>
+                        <li><a href="#daftar-lomba" class="text-gray-400 hover:text-white transition-colors">Semua Lomba</a></li>
+                        <li><a href="#timeline" class="text-gray-400 hover:text-white transition-colors">Timeline</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-bold text-white mb-4">Legal</h4>
+                    <h4 class="text-lg font-bold text-white mb-4">Kategori</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Kebijakan Privasi</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Syarat & Ketentuan</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Kontak Kami</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Publikasi Lomba</a></li>
+                        <li><a href="#daftar-lomba" class="text-gray-400 hover:text-white transition-colors">Olahraga</a></li>
+                        <li><a href="#daftar-lomba" class="text-gray-400 hover:text-white transition-colors">Sains</a></li>
+                        <li><a href="#daftar-lomba" class="text-gray-400 hover:text-white transition-colors">Seni</a></li>
+                        <li><a href="#daftar-lomba" class="text-gray-400 hover:text-white transition-colors">Keislaman</a></li>
+                        <li><a href="#daftar-lomba" class="text-gray-400 hover:text-white transition-colors">Kontes</a></li>
                     </ul>
                 </div>
                 
@@ -622,23 +733,31 @@
                     <h4 class="text-lg font-bold text-white mb-4">Hubungi Kami</h4>
                     <ul class="space-y-3">
                         <li class="flex items-center">
-                            <i class="fas fa-envelope mr-3 text-primary"></i>
-                            <span class="text-gray-400">info@educomp.id</span>
+                            <i class="fas fa-user-friends mr-3 text-primary"></i>
+                            <span class="text-gray-400">Fahim (Olahraga)</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-phone mr-3 text-primary"></i>
-                            <span class="text-gray-400">+62 21 1234 5678</span>
+                            <i class="fas fa-user-friends mr-3 text-primary"></i>
+                            <span class="text-gray-400">Ihsan (Sains)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-user-friends mr-3 text-primary"></i>
+                            <span class="text-gray-400">Azzam (Seni/Kontes)</span>
+                        </li>
+                         <li class="flex items-center">
+                            <i class="fas fa-user-friends mr-3 text-primary"></i>
+                            <span class="text-gray-400">Hilmi (Keislaman)</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-map-marker-alt mr-3 mt-1 text-primary"></i>
-                            <span class="text-gray-400">Jl. Pendidikan No. 123, Jakarta Selatan, Indonesia</span>
+                            <span class="text-gray-400">Jl. Sekolah Al Bunyan No. 123, Bogor, Indonesia</span>
                         </li>
                     </ul>
                 </div>
             </div>
             
             <div class="border-t border-gray-700 pt-8 text-center text-gray-500">
-                <p>&copy; 2025 EduComp. Dibuat dengan <i class="fas fa-heart text-red-500"></i> untuk para juara.</p>
+                <p>&copy; 2025 Al Bunyan Fest. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -664,7 +783,6 @@
             const darkToggleMobile = document.getElementById('dark-toggle-mobile');
             const htmlElement = document.documentElement;
             
-            // Fungsi untuk menerapkan tema
             function applyTheme(theme) {
                 if (theme === 'dark') {
                     htmlElement.classList.add('dark');
@@ -677,11 +795,9 @@
                 }
             }
             
-            // Cek tema saat load
             const savedTheme = localStorage.getItem('theme') || 'light';
             applyTheme(savedTheme);
             
-            // Event listener untuk toggle
             function toggleTheme() {
                 const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -714,7 +830,6 @@
                     const content = document.getElementById(targetId);
                     const icon = toggle.querySelector('i');
                     
-                    // Tutup semua FAQ lain
                     document.querySelectorAll('.faq-content').forEach(c => {
                         if (c.id !== targetId) {
                             c.classList.add('hidden');
@@ -722,7 +837,6 @@
                         }
                     });
                     
-                    // Buka/tutup yang diklik
                     content.classList.toggle('hidden');
                     icon.classList.toggle('rotate-180');
                 });
@@ -744,43 +858,39 @@
 
             // === 6. Intersection Observer (Scroll Reveal & Counter) ===
             const sections = document.querySelectorAll('.reveal-section');
-            let statsAnimated = false; // Flag agar counter hanya jalan sekali
+            let statsAnimated = false; 
 
             const observerOptions = {
-                root: null, // default: viewport
+                root: null,
                 rootMargin: '0px',
-                threshold: 0.1 // 10% dari elemen harus terlihat
+                threshold: 0.1
             };
 
             const sectionObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Tambahkan kelas untuk animasi fade-in
                         entry.target.classList.add('section-visible');
                         if(entry.target.classList.contains('section-fade-up')) {
                             entry.target.classList.add('animation-fade-in-up');
                         }
 
-                        // Cek jika ini section statistik & belum dianimasi
                         if (entry.target.id === 'statistik' && !statsAnimated) {
-                            const statSiswa = document.getElementById('stat-siswa');
+                            const statPeserta = document.getElementById('stat-peserta');
                             const statLomba = document.getElementById('stat-lomba');
                             const statSekolah = document.getElementById('stat-sekolah');
                             
-                            animateValue(statSiswa, 0, parseInt(statSiswa.dataset.target), 2000);
+                            animateValue(statPeserta, 0, parseInt(statPeserta.dataset.target), 2000);
                             animateValue(statLomba, 0, parseInt(statLomba.dataset.target), 2000);
                             animateValue(statSekolah, 0, parseInt(statSekolah.dataset.target), 2000);
                             
-                            statsAnimated = true; // Set flag
+                            statsAnimated = true;
                         }
                         
-                        // Berhenti mengamati setelah animasi
                         observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
-            // Amati semua section
             sections.forEach(section => {
                 sectionObserver.observe(section);
             });
