@@ -40,15 +40,13 @@
                            '0%': { opacity: 0, transform: 'translateY(30px) scale(0.98)' },
                            '100%': { opacity: 1, transform: 'translateY(0px) scale(1)' },
                         },
-                        scroll: {
-                            '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(-50%)' }, 
-                        }
+                        /* === PERUBAHAN 1: HAPUS 'scroll' DARI SINI === */
+                        /* Keyframe akan dipindah ke <style> agar CSS bisa membacanya */
                     },
                     animation: {
                         floating: 'floating 6s ease-in-out infinite',
                         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                        'marquee-scroll': 'scroll 40s linear infinite',
+                        /* === PERUBAHAN 2: HAPUS 'marquee-scroll' DARI SINI === */
                     }
                 }
             }
@@ -98,6 +96,14 @@
             opacity: 1;
         }
 
+        /* === PERUBAHAN 3: DEFINISIKAN KEYFRAME DI SINI === */
+        /* Kita definisikan di CSS agar bisa dibaca oleh .marquee-wrapper */
+        @keyframes scrollRight {
+            0% { transform: translateX(-50%); } /* Mulai dari set duplikat */
+            100% { transform: translateX(0); } /* Selesai di set asli */
+        }
+
+
         /* === 2. CSS MARQUEE SPONSOR (BARU) === */
         .marquee-fade-container {
             position: relative;
@@ -135,7 +141,11 @@
         .marquee-wrapper {
             display: flex;
             width: 200%; /* Konten + Duplikat */
-            animation: marquee-scroll 40s linear infinite;
+            
+            /* === PERUBAHAN 4: PANGGIL ANIMASI 'scrollRight' === */
+            /* Sekarang ini akan berhasil karena @keyframes-nya ada di <style> yang sama */
+            animation: scrollRight 40s linear infinite;
+            
             will-change: transform;
         }
         .marquee-container:hover .marquee-wrapper {
@@ -393,6 +403,7 @@
                 </div>
             </div>
         </section>
+        
         <section id="kategori" class="py-16 bg-white dark:bg-gray-800 reveal-section section-fade-up">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="text-center max-w-2xl mx-auto mb-12">
@@ -422,7 +433,7 @@
                         <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Seni</h3>
                         <p class="text-text_secondary dark:text-gray-400 text-sm">Poster, Art Spark & Videografi</p>
                     </div>
-                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-secondary/20 hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-300 group">
                         <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
                             <i class="fas fa-quran"></i>
                         </div>
@@ -514,7 +525,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-background dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden group transition-all duration-300 hover:shadow-primary/30">
                         <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
                             <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Olahraga</span>
                         </div>
                         <div class="p-6">
@@ -528,7 +539,7 @@
                     </div>
                     <div class="bg-background dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden group transition-all duration-300 hover:shadow-secondary/30">
                         <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
                             <span class="absolute top-4 left-4 bg-secondary text-text_primary px-3 py-1 rounded-full text-sm font-medium">Sains</span>
                         </div>
                         <div class="p-6">
@@ -542,7 +553,7 @@
                     </div>
                     <div class="bg-background dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden group transition-all duration-300 hover:shadow-primary/30">
                         <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
                             <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Seni</span>
                         </div>
                         <div class="p-6">
@@ -583,7 +594,7 @@
         <section id="hadiah" class="py-20 bg-white dark:bg-gray-800 reveal-section section-fade-up">
             <div class="container mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-12 items-center">
                 <div class="flex justify-center">
-                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" 
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" 
                          alt="Piala dan Medali" 
                          class="rounded-3xl shadow-2xl w-full max-w-md lg:max-w-none">
                 </div>
@@ -884,6 +895,7 @@
                 </div>
             </div>
         </section>
+        
         <section id="testimoni" class="py-20 bg-accent dark:bg-gray-800 reveal-section section-fade-up">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="text-center max-w-2xl mx-auto mb-12">
@@ -898,7 +910,7 @@
                             "NLS Al Bunyan tahun lalu seru banget! Lomba futsalnya kompetitif dan panitianya ramah-ramah. Nggak sabar ikut lagi tahun ini!"
                         </p>
                         <div class="flex items-center">
-                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 1" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 1" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
                             <div>
                                 <h4 class="font-bold">Ahmad Rizal</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400">Juara 1 Futsal SMP 2024</p>
@@ -911,7 +923,7 @@
                             "Aku ikut LCC dan Olimpiade MTK. Soalnya menantang dan nambah banyak pengalaman. Senang banget bisa jadi juara 2 MTK!"
                         </p>
                         <div class="flex items-center">
-                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 2" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 2" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
                             <div>
                                 <h4 class="font-bold">Siti Nuraeni</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400">Juara 2 Olimpiade MTK SD 2024</p>
@@ -924,7 +936,7 @@
                             "Ikut lomba Da'i Cilik di NLS bikin aku makin percaya diri tampil di depan umum. Panggungnya megah dan jurinya profesional."
                         </p>
                         <div class="flex items-center">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 3" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 3" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
                             <div>
                                 <h4 class="font-bold">Budi Santoso</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400">Finalis Da'i Cilik SD 2024</p>
@@ -943,7 +955,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                  <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group">
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
                     <div class="p-6">
                         <span class="text-sm font-medium text-primary">LCC & Debat</span>
                         <h3 class="text-xl font-bold my-2 hover:underline">5 Cara Berpikir Cepat dan Kritis Saat Lomba LCC</h3>
@@ -951,7 +963,7 @@
                     </div>
                 </div>
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group">
-                    <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
                     <div class="p-6">
                         <span class="text-sm font-medium text-primary">Produktivitas</span>
                         <h3 class="text-xl font-bold my-2 hover:underline">Manajemen Waktu: Kunci Sukses Juara Lomba Sambil Sekolah</h3>
@@ -959,7 +971,7 @@
                     </div>
                 </div>
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group">
-                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
                     <div class="p-6">
                         <span class="text-sm font-medium text-primary">Public Speaking</span>
                         <h3 class="text-xl font-bold my-2 hover:underline">Cara Mengatasi Gugup Saat Lomba Pidato atau Da'i Cilik</h3>
@@ -1240,5 +1252,3 @@
 </body>
 
 </html>
-
-
