@@ -40,13 +40,10 @@
                            '0%': { opacity: 0, transform: 'translateY(30px) scale(0.98)' },
                            '100%': { opacity: 1, transform: 'translateY(0px) scale(1)' },
                         },
-                        /* === PERUBAHAN 1: HAPUS 'scroll' DARI SINI === */
-                        /* Keyframe akan dipindah ke <style> agar CSS bisa membacanya */
                     },
                     animation: {
                         floating: 'floating 6s ease-in-out infinite',
                         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                        /* === PERUBAHAN 2: HAPUS 'marquee-scroll' DARI SINI === */
                     }
                 }
             }
@@ -96,8 +93,7 @@
             opacity: 1;
         }
 
-        /* === PERUBAHAN 3: DEFINISIKAN KEYFRAME DI SINI === */
-        /* Kita definisikan di CSS agar bisa dibaca oleh .marquee-wrapper */
+        /* Keyframe untuk animasi marquee (bergerak ke kanan) */
         @keyframes scrollRight {
             0% { transform: translateX(-50%); } /* Mulai dari set duplikat */
             100% { transform: translateX(0); } /* Selesai di set asli */
@@ -141,11 +137,8 @@
         .marquee-wrapper {
             display: flex;
             width: 200%; /* Konten + Duplikat */
-            
-            /* === PERUBAHAN 4: PANGGIL ANIMASI 'scrollRight' === */
-            /* Sekarang ini akan berhasil karena @keyframes-nya ada di <style> yang sama */
+            /* Memanggil animasi dari keyframe di atas */
             animation: scrollRight 40s linear infinite;
-            
             will-change: transform;
         }
         .marquee-container:hover .marquee-wrapper {
@@ -159,7 +152,12 @@
         }
         .marquee-item {
             flex-shrink: 0;
-            padding: 0 1.5rem; /* Spasi antar logo (lebih rapat) */
+            
+            /* === PERBAIKAN BUG MOBILE: === */
+            /* Jarak antar logo ditambah dari 1.5rem (24px) ke 2.5rem (40px) */
+            /* Total jarak antar logo kini 5rem (80px), cukup untuk mobile */
+            padding: 0 2.5rem; 
+            
             display: flex;
             justify-content: center;
             align-items: center;
@@ -280,7 +278,7 @@
                     <button id="dark-toggle-desktop" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-accent dark:hover:bg-gray-700">
                         <i class="fas fa-moon text-lg"></i>
                     </button>
-                    <button class="gradient-bg text-white px-5 py-2 rounded-xl font-medium shadow-lg hover:shadow-primary/40 transition-all duration-300">Daftar</button>
+                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="gradient-bg text-white px-5 py-2 rounded-xl font-medium shadow-lg hover:shadow-primary/40 transition-all duration-300">Daftar</a>
                 </div>
                 
                 <div class="lg:hidden flex items-center space-x-2">
@@ -302,7 +300,7 @@
                     <li><a href="#faq" class="block py-2 px-4 rounded-lg hover:bg-accent dark:hover:bg-gray-700">FAQ</a></li>
                 </ul>
                 <div class="border-t border-gray-200 dark:border-gray-700 p-4 space-y-3">
-                    <button class="w-full gradient-bg text-white px-5 py-2 rounded-xl font-medium shadow-lg">Daftar</button>
+                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="w-full gradient-bg text-white px-5 py-2 rounded-xl font-medium shadow-lg text-center block">Daftar</a>
                 </div>
             </div>
         </nav>
@@ -323,13 +321,13 @@
                             Selamat Datang di <span class="gradient-text">Next Leader Summit</span> 2026
                         </h1>
                         <p class="text-lg md:text-xl text-text_secondary dark:text-gray-400 mb-10 max-w-2xl mx-auto lg:mx-0">
-                            Festival lomba Siswa SD & SMP persembahan Sekolah Al Bunyan. Tunjukkan bakat, raih prestasi, dan jadilah juara sejati!
+                            Festival lomba Siswa SD & SMP  Sekolah Al Bunyan. Tunjukkan bakat, raih prestasi, dan jadilah juara sejati!
                         </p>
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
-                            <button class="gradient-bg text-white px-8 py-4 rounded-2xl font-medium shadow-lg hover:shadow-primary/40 transition-all duration-300 flex items-center justify-center gap-2">
+                            <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="gradient-bg text-white px-8 py-4 rounded-2xl font-medium shadow-lg hover:shadow-primary/40 transition-all duration-300 flex items-center justify-center gap-2">
                                 <span>Daftar Lomba</span>
                                 <i class="fas fa-arrow-right"></i>
-                            </button>
+                            </a>
                             <a href="#timeline" class="bg-white dark:bg-gray-700 border-2 border-gradient-start text-gradient-start px-8 py-4 rounded-2xl font-medium hover:bg-accent dark:hover:bg-gray-600 transition-all duration-300 flex items-center justify-center gap-2">
                                 <i class="fas fa-calendar-alt"></i>
                                 <span>Lihat Timeline</span>
@@ -373,84 +371,6 @@
             </div>
         </section>
         
-        <section id="partners" class="py-16 reveal-section">
-            <div class="container mx-auto px-4 md:px-6">
-                <h3 class="text-center text-xl font-medium text-text_secondary dark:text-gray-400 mb-8">
-                    Didukung Oleh
-                </h3>
-                
-                <div class="marquee-fade-container">
-                    <div class="marquee-container">
-                        <div class="marquee-wrapper">
-                            <div class="marquee-content">
-                                <div class="marquee-item"><img src="assets/sponsor/1.png" alt="Sponsor 1" class="h-12 lg:h-16"></div>
-                                <div class="marquee-item"><img src="assets/sponsor/2.png" alt="Sponsor 2" class="h-12 lg:h-16"></div>
-                                <div class="marquee-item"><img src="assets/sponsor/3.png" alt="Sponsor 3" class="h-12 lg:h-16"></div>
-                                <div class="marquee-item"><img src="assets/sponsor/4.png" alt="Sponsor 4" class="h-12 lg:h-16"></div>
-                                <div class="marquee-item"><img src="assets/sponsor/5.png" alt="Sponsor 5" class="h-12 lg:h-16"></div>
-                                <div class="marquee-item"><img src="assets/sponsor/6.png" alt="Sponsor 6" class="h-12 lg:h-16"></div>
-                            </div>
-                            <div class="marquee-content" aria-hidden="true">
-                                <div class="marquee-item"><img src="assets/sponsor/1.png" alt="Sponsor 1" class="h-12 lg:h-16"></div>
-                                <div class="marquee-item"><img src="assets/sponsor/2.png" alt="Sponsor 2" class="h-12 lg:h-16"></div>
-                                <div class="marquee-item"><img src="assets/sponsor/3.png" alt="Sponsor 3" class="h-12 lg:h-16"></div>
-                                <div class="marquee-item"><img src="assets/sponsor/4.png" alt="Sponsor 4" class="h-12 lg:h-16"></div>
-                                <div class="marquee-item"><img src="assets/sponsor/5.png" alt="Sponsor 5" class="h-12 lg:h-16"></div>
-                                <div class="marquee-item"><img src="assets/sponsor/6.png" alt="Sponsor 6" class="h-12 lg:h-16"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="kategori" class="py-16 bg-white dark:bg-gray-800 reveal-section section-fade-up">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Jelajahi 5 <span class="gradient-text">Kategori Utama</span></h2>
-                    <p class="text-lg text-text_secondary dark:text-gray-400">Temukan kompetisi yang paling sesuai dengan minat dan bakatmu.</p>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-300 group">
-                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
-                            <i class="fas fa-futbol"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Olahraga</h3>
-                        <p class="text-text_secondary dark:text-gray-400 text-sm">Futsal & Catur</p>
-                    </div>
-                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-secondary/20 hover:-translate-y-2 transition-all duration-300 group">
-                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Sains</h3>
-                        <p class="text-text_secondary dark:text-gray-400 text-sm">Olimpiade, LCC & Debat</p>
-                    </div>
-                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-300 group">
-                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Seni</h3>
-                        <p class="text-text_secondary dark:text-gray-400 text-sm">Poster, Art Spark & Videografi</p>
-                    </div>
-                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-300 group">
-                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
-                            <i class="fas fa-quran"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Keislaman</h3>
-                        <p class="text-text_secondary dark:text-gray-400 text-sm">Da'i Cilik, MHQ & MTQ</p>
-                    </div>
-                    <div class="bg-background dark:bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-300 group">
-                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center text-white text-3xl mb-4">
-                            <i class="fas fa-microphone-alt"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Kontes</h3>
-                        <p class="text-text_secondary dark:text-gray-400 text-sm">Story Telling, Pidato & Menyanyi</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
         <section id="timeline" class="py-20 container mx-auto px-4 md:px-6 reveal-section section-fade-up">
             <div class="text-center max-w-2xl mx-auto mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Timeline Acara</span></h2>
@@ -460,54 +380,54 @@
             <div class="timeline-container">
                 <div class="timeline-item timeline-left">
                     <div class="timeline-content">
-                        <h3>Hari 1</h3>
+                        <h3>Hari 1 (Selasa, 27 Januari 2026)</h3>
                         <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside">
                             <li>Pembukaan</li>
-                            <li>Futsal (Penyisihan)</li>
-                            <li>LCC Umum (Penyisihan)</li>
+                            <li>Futsal 1 (SD dan SMP) Penyisihan</li>
+                            <li>LCC Umum (SD dan SMP) : Penyisihan dan Semifinal</li>
                             <li>Art Spark</li>
                         </ul>
                     </div>
                 </div>
                 <div class="timeline-item timeline-right">
                     <div class="timeline-content">
-                        <h3>Hari 2</h3>
+                        <h3>Hari 2 (Rabu, 28 Januari 2026)</h3>
                         <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside">
-                            <li>Futsal (Penyisihan)</li>
-                            <li>Olimpiade MTK</li>
-                            <li>MTQ</li>
+                            <li>Futsal (SD dan SMP) : Penyisihan</li>
+                            <li>Olimpiade MTK SD dan SMP</li>
+                            <li>MTQ : (SD dan SMP)</li>
                         </ul>
                     </div>
                 </div>
                 <div class="timeline-item timeline-left">
                     <div class="timeline-content">
-                        <h3>Hari 3</h3>
+                        <h3>Hari 3 (Kamis, 29 Januari 2026)</h3>
                         <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside">
-                            <li>Futsal (Final)</li>
-                            <li>Catur (Penyisihan)</li>
-                            <li>Olimpiade Sains</li>
-                            <li>MHQ</li>
+                            <li>Futsal (SD dan SMP) : Semifinal dan Final</li>
+                            <li>Catur (SD dan SMP) : Penyisihan</li>
+                            <li>Olimpiade Sains (SD dan SMP)</li>
+                            <li>MHQ (SD dan SMP)</li>
                         </ul>
                     </div>
                 </div>
                 <div class="timeline-item timeline-right">
                     <div class="timeline-content">
-                        <h3>Hari 4</h3>
+                        <h3>Hari 4 (Jumat, 30 Januari 2026)</h3>
                         <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside">
-                            <li>Catur (Final)</li>
-                            <li>Debat Umum</li>
-                            <li>Story Telling</li>
+                            <li>Catur (SD dan SMP) Semifinal dan Final</li>
+                            <li>Debat Umum (SMP)</li>
+                            <li>Story telling (SMP)</li>
                         </ul>
                     </div>
                 </div>
                 <div class="timeline-item timeline-left">
                     <div class="timeline-content">
-                        <h3>Penutupan</h3>
+                        <h3>Penutupan/Hari Puncak (Sabtu, 31 Januari 2026)</h3>
                         <ul class="text-text_secondary dark:text-gray-400 list-disc list-inside">
-                            <li>Final LCC Umum</li>
-                            <li>Pidato 3 Bahasa</li>
-                            <li>Menyanyi</li>
-                            <li>Da'i Cilik</li>
+                            <li>LCC Umum (SD dan SMP) Final</li>
+                            <li>Pidato 3 bahasa (B.Arab, B.Indonesia, B.Inggris) : SMP</li>
+                            <li>Menyanyi : SD dan SMP</li>
+                            <li>Da'i Cilik (SD)</li>
                         </ul>
                     </div>
                 </div>
@@ -525,7 +445,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-background dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden group transition-all duration-300 hover:shadow-primary/30">
                         <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
                             <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Olahraga</span>
                         </div>
                         <div class="p-6">
@@ -533,13 +453,13 @@
                             <p class="text-text_secondary dark:text-gray-400 text-sm mb-4">Adu skill dan strategi tim-mu di lapangan. Terbuka untuk tim SD & SMP (Lk).</p>
                             <div class="flex justify-between items-center text-sm">
                                 <span class="text-text_primary dark:text-gray-200 font-medium"><i class="fas fa-users mr-1"></i> Tim</span>
-                                <a href="#" class="font-bold text-primary group-hover:underline">Lihat Detail <i class="fas fa-arrow-right text-xs"></i></a>
+                                <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="font-bold text-primary group-hover:underline">Lihat Detail <i class="fas fa-arrow-right text-xs"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="bg-background dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden group transition-all duration-300 hover:shadow-secondary/30">
                         <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
                             <span class="absolute top-4 left-4 bg-secondary text-text_primary px-3 py-1 rounded-full text-sm font-medium">Sains</span>
                         </div>
                         <div class="p-6">
@@ -547,13 +467,13 @@
                             <p class="text-text_secondary dark:text-gray-400 text-sm mb-4">Lomba Cepat Tepat menguji wawasan umum, sains, dan pengetahuan agama.</p>
                             <div class="flex justify-between items-center text-sm">
                                 <span class="text-text_primary dark:text-gray-200 font-medium"><i class="fas fa-user-friends mr-1"></i> Tim (Pr/Lk)</span>
-                                <a href="#" class="font-bold text-primary group-hover:underline">Lihat Detail <i class="fas fa-arrow-right text-xs"></i></a>
+                                <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="font-bold text-primary group-hover:underline">Lihat Detail <i class="fas fa-arrow-right text-xs"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="bg-background dark:bg-gray-700 rounded-2xl shadow-xl overflow-hidden group transition-all duration-300 hover:shadow-primary/30">
                         <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
                             <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Seni</span>
                         </div>
                         <div class="p-6">
@@ -561,7 +481,7 @@
                             <p class="text-text_secondary dark:text-gray-400 text-sm mb-4">Buat video promosi kreatif tentang Sekolah Al Bunyan. Terbuka untuk SMP (Online).</p>
                             <div class="flex justify-between items-center text-sm">
                                 <span class="text-text_primary dark:text-gray-200 font-medium"><i class="fas fa-video mr-1"></i> SMP (Online)</span>
-                                <a href="#" class="font-bold text-primary group-hover:underline">Lihat Detail <i class="fas fa-arrow-right text-xs"></i></a>
+                                <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="font-bold text-primary group-hover:underline">Lihat Detail <i class="fas fa-arrow-right text-xs"></i></a>
                             </div>
                         </div>
                     </div>
@@ -594,7 +514,7 @@
         <section id="hadiah" class="py-20 bg-white dark:bg-gray-800 reveal-section section-fade-up">
             <div class="container mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-12 items-center">
                 <div class="flex justify-center">
-                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" 
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lomba Videografi" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" 
                          alt="Piala dan Medali" 
                          class="rounded-3xl shadow-2xl w-full max-w-md lg:max-w-none">
                 </div>
@@ -656,7 +576,7 @@
                                 <h4 class="font-bold text-xl mb-1">Futsal</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -671,7 +591,7 @@
                                 <h4 class="font-bold text-xl mb-1">Catur</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -688,10 +608,10 @@
                                 <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Hamid</span>
                             </div>
                             <div class="p-4">
-                                <h4 class="font-bold text-xl mb-1">Olimpiade MTK</h4>
+                                <h4 class="font-bold text-xl mb-1">Olimpiade Matematika</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk/Pr)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -706,7 +626,7 @@
                                 <h4 class="font-bold text-xl mb-1">Olimpiade Sains</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk/Pr)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -721,7 +641,7 @@
                                 <h4 class="font-bold text-xl mb-1">LCC Umum</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk/Pr)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -729,14 +649,14 @@
 
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/debat.jpg" alt="Poster Debat Bahasa Indonesia" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <img src="assets/images/futsal.jpg" alt="Poster Debat Bahasa Indonesia" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
                                 <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Hamid</span>
                             </div>
                             <div class="p-4">
-                                <h4 class="font-bold text-xl mb-1">Debat B. Indonesia</h4>
+                                <h4 class="font-bold text-xl mb-1">Debat Bahasa Indonesia</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Lk/Pr)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -756,7 +676,7 @@
                                 <h4 class="font-bold text-xl mb-1">Poster Digital (Online)</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Lk/Pr)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -771,7 +691,7 @@
                                 <h4 class="font-bold text-xl mb-1">Art Spark</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD (Lk/Pr)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -786,7 +706,7 @@
                                 <h4 class="font-bold text-xl mb-1">Videografi (Online)</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Lk/Pr)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -806,7 +726,7 @@
                                 <h4 class="font-bold text-xl mb-1">Da'i Cilik</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD (Lk)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -821,7 +741,7 @@
                                 <h4 class="font-bold text-xl mb-1">MHQ (Hafalan)</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -836,7 +756,7 @@
                                 <h4 class="font-bold text-xl mb-1">MTQ (Tilawah)</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -856,7 +776,7 @@
                                 <h4 class="font-bold text-xl mb-1">Story Telling</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Lk/Pr)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -871,7 +791,7 @@
                                 <h4 class="font-bold text-xl mb-1">Pidato 3 Bahasa</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Lk/Pr)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -886,7 +806,7 @@
                                 <h4 class="font-bold text-xl mb-1">Menyanyi</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Lk/Pr)</p>
                                 <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
+                                    <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
                                     <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
@@ -910,7 +830,7 @@
                             "NLS Al Bunyan tahun lalu seru banget! Lomba futsalnya kompetitif dan panitianya ramah-ramah. Nggak sabar ikut lagi tahun ini!"
                         </p>
                         <div class="flex items-center">
-                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 1" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 1" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
                             <div>
                                 <h4 class="font-bold">Ahmad Rizal</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400">Juara 1 Futsal SMP 2024</p>
@@ -923,7 +843,7 @@
                             "Aku ikut LCC dan Olimpiade MTK. Soalnya menantang dan nambah banyak pengalaman. Senang banget bisa jadi juara 2 MTK!"
                         </p>
                         <div class="flex items-center">
-                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 2" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 2" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
                             <div>
                                 <h4 class="font-bold">Siti Nuraeni</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400">Juara 2 Olimpiade MTK SD 2024</p>
@@ -936,7 +856,7 @@
                             "Ikut lomba Da'i Cilik di NLS bikin aku makin percaya diri tampil di depan umum. Panggungnya megah dan jurinya profesional."
                         </p>
                         <div class="flex items-center">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 3" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Testimoni 3" class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-secondary">
                             <div>
                                 <h4 class="font-bold">Budi Santoso</h4>
                                 <p class="text-sm text-text_secondary dark:text-gray-400">Finalis Da'i Cilik SD 2024</p>
@@ -955,7 +875,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                  <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group">
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
                     <div class="p-6">
                         <span class="text-sm font-medium text-primary">LCC & Debat</span>
                         <h3 class="text-xl font-bold my-2 hover:underline">5 Cara Berpikir Cepat dan Kritis Saat Lomba LCC</h3>
@@ -963,7 +883,7 @@
                     </div>
                 </div>
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group">
-                    <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
                     <div class="p-6">
                         <span class="text-sm font-medium text-primary">Produktivitas</span>
                         <h3 class="text-xl font-bold my-2 hover:underline">Manajemen Waktu: Kunci Sukses Juara Lomba Sambil Sekolah</h3>
@@ -971,7 +891,7 @@
                     </div>
                 </div>
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group">
-                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB|fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Artikel" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
                     <div class="p-6">
                         <span class="text-sm font-medium text-primary">Public Speaking</span>
                         <h3 class="text-xl font-bold my-2 hover:underline">Cara Mengatasi Gugup Saat Lomba Pidato atau Da'i Cilik</h3>
@@ -1024,9 +944,9 @@
             <div class="container mx-auto px-4 md:px-6 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Siap Jadi Juara di <br class="hidden sm:block"> NLS Al Bunyan 2026?</h2>
                 <p class="text-lg mb-8 max-w-xl mx-auto opacity-90">Jangan tunda lagi. Daftarkan dirimu atau tim sekolahmu dan raih prestasi gemilang!</p>
-                <button class="bg-white text-primary px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-white/40 hover:scale-105 transition-all duration-300">
+                <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="bg-white text-primary px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-white/40 hover:scale-105 transition-all duration-300 inline-block">
                     Daftar Sekarang Juga!
-                </button>
+                </a>
             </div>
         </section>
         
@@ -1042,9 +962,9 @@
                     </a>
                     <p class="text-gray-400 mb-6">Persembahan Sekolah Al Bunyan. Tunjukkan Bakat, Raih Prestasi.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"><i class="fab fa-youtube"></i></a>
-                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/nextleadersummit" class="w-10 h-10 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@sekolahalbunyan1251" target="_blank" class="w-10 h-10 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@nextleadersummit" target="_blank" class="w-10 h-10 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
                 
