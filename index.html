@@ -96,24 +96,33 @@
         }
         #mobile-menu.is-open { max-height: 600px; opacity: 1; }
 
-        /* === CSS DAFTAR LOMBA (Web Lama Style) === */
+        /* === PERBAIKAN CSS DAFTAR LOMBA (Agar tidak kepotong di HP) === */
         .poster-slider {
             display: flex;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            gap: 1.5rem;
-            padding: 0.5rem 1.5rem; 
+            gap: 1rem; /* Jarak antar kartu */
+            padding: 1rem 1.5rem; /* Padding kiri kanan agar scroll enak */
         }
         .poster-slider::-webkit-scrollbar { display: none; }
         .poster-slider { -ms-overflow-style: none; scrollbar-width: none; }
 
         .poster-card {
             flex-shrink: 0;
-            width: 240px; /* Fixed width seperti web lama agar rapi */
-            scroll-snap-align: start;
+            /* UKURAN RESPONSIF: */
+            width: 85%; /* Di HP mengisi 85% layar agar terlihat ada kartu selanjutnya */
+            scroll-snap-align: center; /* Kartu berhenti di tengah layar saat scroll */
             transition: all 0.3s ease;
         }
         .poster-card:hover { transform: translateY(-5px); }
+        
+        @media (min-width: 768px) { 
+            .poster-card { width: 45%; } /* Tablet: 2 kartu */
+            .poster-slider { padding: 0.5rem; }
+        }
+        @media (min-width: 1024px) { 
+            .poster-card { width: calc(33.333% - 1rem); } /* Desktop: 3 kartu */
+        }
 
         .btn-ghost-gradient {
             background-color: transparent;
@@ -133,7 +142,7 @@
         .dark .btn-ghost-gradient { color: #00E676; border-color: #00E676; }
         .dark .btn-ghost-gradient:hover { color: #08211C; }
 
-        /* === CSS MARQUEE (OPTIMASI) === */
+        /* === CSS MARQUEE === */
         .marquee-container {
             overflow: hidden; width: 100%; position: relative;
             mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -148,37 +157,20 @@
         }
         .marquee-item:hover img { transform: scale(1.05); z-index: 10; }
 
-        /* === TIMELINE GRADASI (PERBAIKAN) === */
+        /* === TIMELINE === */
         .timeline-container { position: relative; max-width: 900px; margin: 0 auto; }
-        
-        /* Garis Tengah Gradasi */
         .timeline-container::after { 
             content: ''; position: absolute; width: 6px; 
-            background: linear-gradient(to bottom, #00B0FF, #00E676); /* Gradasi Biru ke Hijau */
+            background: linear-gradient(to bottom, #00B0FF, #00E676);
             top: 0; bottom: 0; left: 50%; margin-left: -3px; border-radius: 3px; 
         }
-        
         .timeline-item { padding: 10px 40px; position: relative; width: 50%; }
-        
-        /* Titik-titik (Dots) Gradasi Border */
         .timeline-item::after { 
             content: ''; position: absolute; width: 24px; height: 24px; 
-            right: -12px; 
-            background-color: white; 
-            border: 4px solid transparent; /* Transparent untuk menampilkan border gradasi */
-            background-clip: padding-box; /* Trik CSS border gradient */
-            border-radius: 50%; 
-            z-index: 1; 
-            box-shadow: 0 0 0 4px #00B0FF; /* Fallback solid color */
+            right: -12px; background-color: white; 
+            border: 4px solid #00B0FF; 
+            border-radius: 50%; z-index: 1; 
         }
-        /* Override box-shadow dengan border gradient simulasi jika browser support */
-        .timeline-item::after {
-             box-shadow: none;
-             background: white;
-             border: 4px solid #00B0FF; /* Default color */
-        }
-        /* Agar dots mengikuti tema gradasi garis */
-        .timeline-item:nth-child(odd)::after { border-color: #00B0FF; }
         .timeline-item:nth-child(even)::after { border-color: #00E676; }
 
         .timeline-left { left: 0; padding-right: 50px; }
@@ -191,7 +183,7 @@
         .timeline-content h3 { font-size: 1.5rem; font-weight: 700; color: #00B0FF; margin-bottom: 8px; }
         
         .dark .timeline-container::after { background: linear-gradient(to bottom, #00B0FF, #00E676); }
-        .dark .timeline-item::after { background-color: #1f2937; } /* Dark mode dot center */
+        .dark .timeline-item::after { background-color: #1f2937; }
         .dark .timeline-content { background-color: #374151; } 
         
         @media (max-width: 768px) {
@@ -293,32 +285,32 @@
                         </div>
                     </div>
                     
-                    <div class="lg:w-1/2 flex justify-center relative">
-                        <div class="relative w-full max-w-md aspect-square flex items-center justify-center">
+                    <div class="lg:w-1/2 flex justify-center relative mt-10 lg:mt-0">
+                        <div class="relative w-72 h-72 lg:w-96 lg:h-96 flex items-center justify-center">
                             
-                            <div class="w-[80%] h-[80%] rounded-full gradient-bg flex items-center justify-center floating shadow-2xl absolute">
-                                <div class="w-[80%] h-[80%] bg-white dark:bg-gray-800 rounded-full flex items-center justify-center">
-                                     <img src="assets/icons/favicon.png" alt="NLS Logo" class="w-1/2 h-auto object-contain">
+                            <div class="absolute inset-0 rounded-full gradient-bg floating shadow-2xl opacity-90 flex items-center justify-center">
+                                <div class="w-[90%] h-[90%] bg-white dark:bg-gray-800 rounded-full flex items-center justify-center overflow-hidden">
+                                     <img src="assets/icons/favicon.png" alt="NLS Logo" class="w-3/4 h-3/4 object-contain">
                                 </div>
                             </div>
 
-                            <div class="absolute top-[10%] right-0 lg:-right-4 glass-effect p-4 rounded-2xl shadow-lg flex items-center space-x-3 animate-bounce" style="animation-duration: 3s;">
-                                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white shadow-md">
-                                    <i class="fas fa-layer-group"></i>
+                            <div class="absolute top-0 right-0 lg:-right-4 glass-effect p-3 md:p-4 rounded-2xl shadow-lg flex items-center space-x-3 animate-bounce z-20" style="animation-duration: 3s;">
+                                <div class="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-full flex items-center justify-center text-white shadow-md">
+                                    <i class="fas fa-layer-group text-sm md:text-base"></i>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-sm text-gray-800 dark:text-white">5 Kategori</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-300">Lomba</p>
+                                    <p class="font-bold text-xs md:text-sm text-gray-800 dark:text-white">5 Kategori</p>
+                                    <p class="text-[10px] md:text-xs text-gray-500 dark:text-gray-300">Lomba</p>
                                 </div>
                             </div>
 
-                            <div class="absolute bottom-[10%] left-0 lg:-left-4 glass-effect p-4 rounded-2xl shadow-lg flex items-center space-x-3 animate-bounce" style="animation-duration: 4s;">
-                                <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center text-white shadow-md">
-                                    <i class="fas fa-clipboard-list"></i>
+                            <div class="absolute bottom-0 left-0 lg:-left-4 glass-effect p-3 md:p-4 rounded-2xl shadow-lg flex items-center space-x-3 animate-bounce z-20" style="animation-duration: 4s;">
+                                <div class="w-8 h-8 md:w-10 md:h-10 bg-secondary rounded-full flex items-center justify-center text-white shadow-md">
+                                    <i class="fas fa-clipboard-list text-sm md:text-base"></i>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-sm text-gray-800 dark:text-white">14+ Lomba</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-300">Tersedia</p>
+                                    <p class="font-bold text-xs md:text-sm text-gray-800 dark:text-white">14+ Lomba</p>
+                                    <p class="text-[10px] md:text-xs text-gray-500 dark:text-gray-300">Tersedia</p>
                                 </div>
                             </div>
 
@@ -433,39 +425,38 @@
         <section id="daftar-lomba" class="py-16 container mx-auto px-0 md:px-6 reveal-section section-fade-up">
             <div class="text-center max-w-2xl mx-auto mb-12 px-4">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Daftar Lengkap <span class="gradient-text">Kompetisi</span></h2>
-                <p class="text-lg text-text_secondary dark:text-gray-400">Inilah semua 14 kompetisi seru yang bisa kamu ikuti!</p>
+                <p class="text-lg text-text_secondary dark:text-gray-400">Total 13 mata lomba siap diikuti! Pilih kategori di bawah.</p>
             </div>
             
-            <div class="max-w-7xl mx-auto space-y-12 pl-4 md:pl-0">
+            <div class="space-y-12">
                 <div>
-                    <h3 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">Olahraga</h3>
+                    <h3 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3 ml-4 md:ml-0">Olahraga</h3>
                     <div class="poster-slider">
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/futsal.jpg" loading="lazy" decoding="async" alt="Poster Lomba Futsal" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
+                                <img src="assets/images/futsal.jpg" alt="Futsal" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
                                 <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Anwar</span>
                             </div>
                             <div class="p-4">
                                 <h4 class="font-bold text-xl mb-1">Futsal</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Laki-laki)</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Putra)</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/fashion show.jpg" loading="lazy" decoding="async" alt="Poster Lomba Catur" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
+                                <img src="assets/images/fashion show.jpg" alt="Catur" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
                                 <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Anwar</span>
                             </div>
                             <div class="p-4">
                                 <h4 class="font-bold text-xl mb-1">Catur</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Laki-laki)</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Putra)</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
@@ -473,49 +464,47 @@
                 </div>
 
                 <div>
-                    <h3 class="text-2xl font-bold mb-6 border-l-4 border-secondary pl-3">Sains</h3>
+                    <h3 class="text-2xl font-bold mb-6 border-l-4 border-secondary pl-3 ml-4 md:ml-0">Sains</h3>
                     <div class="poster-slider">
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/menggambar.jpg" loading="lazy" decoding="async" alt="Poster Olimpiade MTK" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
-                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Hamid</span>
+                                <img src="assets/images/menggambar.jpg" alt="Olimpiade MTK" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-secondary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Hamid</span>
                             </div>
                             <div class="p-4">
-                                <h4 class="font-bold text-xl mb-1">Olimpiade Matematika</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Laki-laki/Perempuan)</p>
+                                <h4 class="font-bold text-xl mb-1">Olimpiade MTK</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
-
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/surat.jpg" loading="lazy" decoding="async" alt="Poster Olimpiade Sains" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
-                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Hamid</span>
+                                <img src="assets/images/surat.jpg" alt="Olimpiade Sains" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-secondary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Hamid</span>
                             </div>
                             <div class="p-4">
                                 <h4 class="font-bold text-xl mb-1">Olimpiade Sains</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Laki-laki/Perempuan)</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
-
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/FLC.jpg" loading="lazy" decoding="async" alt="Poster LCC Umum" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
-                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Hamid</span>
+                                <img src="assets/images/FLC.jpg" alt="LCC Umum" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-secondary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: P. Hamid</span>
                             </div>
                             <div class="p-4">
                                 <h4 class="font-bold text-xl mb-1">LCC Umum</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Laki-laki/Perempuan)</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
@@ -523,99 +512,95 @@
                 </div>
 
                 <div>
-                    <h3 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">Seni</h3>
+                    <h3 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3 ml-4 md:ml-0">Seni</h3>
                     <div class="poster-slider">
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/poster.jpg" loading="lazy" decoding="async" alt="Poster Digital Competition" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
+                                <img src="assets/images/poster.jpg" alt="Poster Digital" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
                                 <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
                             </div>
                             <div class="p-4">
-                                <h4 class="font-bold text-xl mb-1">Poster Digital (Online)</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Laki-laki/Perempuan)</p>
+                                <h4 class="font-bold text-xl mb-1">Poster Digital</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Online)</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
-
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/menggambar.jpg" loading="lazy" decoding="async" alt="Poster Art Spark" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
+                                <img src="assets/images/menggambar.jpg" alt="Art Spark" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
                                 <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
                             </div>
                             <div class="p-4">
                                 <h4 class="font-bold text-xl mb-1">Art Spark</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD (Laki-laki/Perempuan)</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
+                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/poster.jpg" loading="lazy" decoding="async" alt="Poster Videografi" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
+                                <img src="assets/images/poster.jpg" alt="Videografi" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
                                 <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
                             </div>
                             <div class="p-4">
-                                <h4 class="font-bold text-xl mb-1">Videografi (Online)</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Laki-laki/Perempuan)</p>
+                                <h4 class="font-bold text-xl mb-1">Videografi</h4>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Online)</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                
                 <div>
-                    <h3 class="text-2xl font-bold mb-6 border-l-4 border-secondary pl-3">Keislaman</h3>
+                    <h3 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3 ml-4 md:ml-0">Keislaman</h3>
                     <div class="poster-slider">
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/MHQ.jpg" loading="lazy" decoding="async" alt="Poster Da'i Cilik" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
+                                <img src="assets/images/MHQ.jpg" alt="Da'i Cilik" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
                                 <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Ust. Wira</span>
                             </div>
                             <div class="p-4">
                                 <h4 class="font-bold text-xl mb-1">Da'i Cilik</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD (Laki-laki)</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD (Putra)</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
-
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/MHQ.jpg" loading="lazy" decoding="async" alt="Poster MHQ" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
+                                <img src="assets/images/MHQ.jpg" alt="MHQ" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
                                 <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Ust. Wira</span>
                             </div>
                             <div class="p-4">
                                 <h4 class="font-bold text-xl mb-1">MHQ (Hafalan)</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Laki-laki)</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Putra)</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
-
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/MTQ.jpg" loading="lazy" decoding="async" alt="Poster MTQ" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
+                                <img src="assets/images/MTQ.jpg" alt="MTQ" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
                                 <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Ust. Wira</span>
                             </div>
                             <div class="p-4">
                                 <h4 class="font-bold text-xl mb-1">MTQ (Tilawah)</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Laki-laki)</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Putra)</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
@@ -623,49 +608,47 @@
                 </div>
 
                 <div>
-                    <h3 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">Kontes</h3>
+                    <h3 class="text-2xl font-bold mb-6 border-l-4 border-secondary pl-3 ml-4 md:ml-0">Kontes</h3>
                     <div class="poster-slider">
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/story telling.jpg" loading="lazy" decoding="async" alt="Poster Story Telling" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
-                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
+                                <img src="assets/images/story telling.jpg" alt="Story Telling" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-secondary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
                             </div>
                             <div class="p-4">
                                 <h4 class="font-bold text-xl mb-1">Story Telling</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Laki-laki/Perempuan)</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
-
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/debat.jpg" loading="lazy" decoding="async" alt="Poster Pidato 3 Bahasa" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
-                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
+                                <img src="assets/images/debat.jpg" alt="Pidato 3 Bahasa" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-secondary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
                             </div>
                             <div class="p-4">
                                 <h4 class="font-bold text-xl mb-1">Pidato 3 Bahasa</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP (Laki-laki/Perempuan)</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SMP</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
-
                         <div class="poster-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden group p-2">
                             <div class="relative">
-                                <img src="assets/images/nyanyi.jpg" loading="lazy" decoding="async" alt="Poster Lomba Menyanyi" class="w-full h-auto object-cover rounded-lg aspect-[4/5]">
-                                <span class="absolute top-4 left-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
+                                <img src="assets/images/nyanyi.jpg" alt="Menyanyi" class="w-full h-auto object-cover rounded-lg aspect-[1/1.4142]">
+                                <span class="absolute top-4 left-4 bg-secondary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">PIC: Miss Juli</span>
                             </div>
                             <div class="p-4">
                                 <h4 class="font-bold text-xl mb-1">Menyanyi</h4>
-                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP (Laki-laki/Perempuan)</p>
+                                <p class="text-sm text-text_secondary dark:text-gray-400 mb-4">SD & SMP</p>
                                 <div class="flex space-x-3">
                                     <a href="https://forms.gle/5StMRkj7UngowUDr8" target="_blank" class="flex-1 text-center gradient-bg text-white font-bold py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">Daftar</a>
-                                    <a href="#" class="btn-ghost-gradient flex-1">Guidebook</a>
+                                    <a href="#" target="_blank" class="btn-ghost-gradient flex-1">Guidebook</a>
                                 </div>
                             </div>
                         </div>
@@ -810,15 +793,15 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                      <div class="bg-background dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden p-6">
-                        <h3 class="font-bold my-2 text-Primary">Tips LCC</h3>
+                        <h3 class="font-bold my-2 text-primary">Tips LCC</h3>
                         <p class="text-sm">Cara berpikir cepat dan tepat saat lomba cerdas cermat.</p>
                     </div>
                     <div class="bg-background dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden p-6">
-                        <h3 class="font-bold my-2 text-Primary">Mental Juara</h3>
+                        <h3 class="font-bold my-2 text-primary">Mental Juara</h3>
                         <p class="text-sm">Mengatasi gugup saat tampil di depan umum.</p>
                     </div>
                      <div class="bg-background dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden p-6">
-                        <h3 class="font-bold my-2 text-Primary">Manajemen Waktu</h3>
+                        <h3 class="font-bold my-2 text-primary">Manajemen Waktu</h3>
                         <p class="text-sm">Membagi waktu antara sekolah dan latihan lomba.</p>
                     </div>
                 </div>
